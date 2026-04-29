@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOD Agent Architecture</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/jpeg" href="icon-48.jpg">
+<link rel="apple-touch-icon" href="icon.jpg">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .subtitle {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-bottom: 28px;
+  }
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Host / Environment */
+  .host-bar {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .host-bar .host-name {
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .host-bar .host-name .badge {
+    background: #3b82f6; color: #fff; font-size: 0.65rem;
+    padding: 2px 8px; border-radius: 99px; font-weight: 600;
+    text-transform: uppercase;
+  }
+  .host-bar .host-stats {
+    display: flex; gap: 16px; color: #94a3b8; font-size: 0.8rem;
+  }
+  .host-bar .host-stats span { display: flex; align-items: center; gap: 4px; }
+
+  /* Gateway card */
+  .gateway-card {
+    background: linear-gradient(135deg, #1e293b 0%, #1a1f35 100%);
+    border: 1px solid #3b82f6;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .gateway-card h2 {
+    color: #60a5fa;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .gateway-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+  }
+  .gateway-details strong { color: #e2e8f0; }
+
+  /* Agent cluster */
+  .agents-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    margin-bottom: 12px;
+  }
+  .agents-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .agent-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .agent-card:hover { border-color: #475569; }
+  .agent-card.curator { border-left: 3px solid #f59e0b; }
+  .agent-card.gmail  { border-left: 3px solid #22c55e; }
+  .agent-card.pics   { border-left: 3px solid #a855f7; }
+  .agent-card.telegram { border-left: 3px solid #3b82f6; }
+  .agent-card.ttbot  { border-left: 3px solid #ec4899; }
+
+  .agent-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .agent-emoji { font-size: 1.4rem; line-height: 1; }
+  .agent-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .agent-role {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-bottom: 6px;
+  }
+  .agent-model {
+    font-size: 0.7rem;
+    color: #64748b;
+    background: #0f172a;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .agent-detail {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin-bottom: 3px;
+  }
+  .agent-detail strong { color: #cbd5e1; }
+  .agent-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+  .tag-cron    { background: #1e3a5f; color: #60a5fa; }
+  .tag-urgent  { background: #5f1e1e; color: #f87171; }
+  .tag-lan     { background: #1e3a5f; color: #a78bfa; }
+  .tag-pending { background: #3f3a1e; color: #facc15; }
+
+  /* Pipeline arrows */
+  .pipeline {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .pipeline h3 {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .flow-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 4px;
+    font-size: 0.78rem;
+  }
+  .flow-node {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: center;
+    min-width: 80px;
+  }
+  .flow-node .flow-icon { font-size: 1.2rem; display: block; margin-bottom: 2px; }
+  .flow-node .flow-label { color: #94a3b8; font-size: 0.65rem; }
+  .flow-arrow {
+    color: #475569;
+    font-size: 1.1rem;
+    padding: 0 4px;
+  }
+  .flow-branch {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .flow-branch-item {
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  /* Curation rules table */
+  .rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+    margin-top: 8px;
+  }
+  .rules-table th {
+    text-align: left;
+    color: #64748b;
+    padding: 6px 8px;
+    border-bottom: 1px solid #334155;
+    font-weight: 600;
+  }
+  .rules-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #1e293b;
+    color: #94a3b8;
+  }
+  .rules-table td strong { color: #e2e8f0; }
+  .rules-table tr:hover td { background: #1a1f35; }
+
+  .section { margin-bottom: 24px; }
+
+  @media (max-width: 700px) {
+    body { padding: 12px; }
+    .agents-row { grid-template-columns: 1fr; }
+    .flow-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="dashboard-grid">
+
+  <!-- Title -->
+  <div>
+    <h1>🏛️ Hamburg Overhead Door <span style="color:#60a5fa;font-weight:300;">Agent Architecture</span></h1>
+    <div class="subtitle">OpenClaw · Fedora 43 · Updated 2026-04-29 13:25 13:08</div>
+  </div>
+
+  <!-- Host Environment -->
+  <div class="host-bar">
+    <div class="host-name">
+      <span>🖥️</span> Fedora 43 (Workstation)
+      <span class="badge">Host</span>
+    </div>
+    <div class="host-stats">
+      <span>🔒 <strong>SSH</strong> active</span>
+      <span>🛡️ <strong>Firewall</strong> hardened</span>
+      <span>🔗 <strong>Tailscale</strong> 100.85.240.73</span>
+      <span>📡 <strong>mDNS</strong> off</span>
+    </div>
+  </div>
+
+  <!-- Gateway -->
+  <div class="gateway-card section">
+    <h2>🔌 OpenClaw Gateway</h2>
+    <div class="gateway-details">
+      <div><strong>Port</strong> 18789 (loopback)</div>
+      <div><strong>PID</strong> 101555</div>
+      <div><strong>Model</strong> deepseek/deepseek-v4-flash</div>
+      <div><strong>Dashboard</strong> <code style="color:#60a5fa;">http://127.0.0.1:18789/</code></div>
+    </div>
+  </div>
+
+  <!-- Agents -->
+  <div class="section">
+    <div class="agents-title">🤖 Registered Agents</div>
+    <div class="agents-row">
+      <!-- Curator -->
+      <div class="agent-card curator">
+        <div class="agent-header">
+          <span class="agent-emoji">🏛️</span>
+          <span class="agent-name">Curator</span>
+        </div>
+        <div class="agent-role">Central Orchestrator</div>
+        <div class="agent-model">deepseek/deepseek-v4-flash</div>
+        <div class="agent-detail"><strong>ID</strong> main</div>
+        <div class="agent-detail"><strong>Dir</strong> /workspace</div>
+        <div class="agent-detail"><strong>Channels</strong> WebChat, Telegram bridge</div>
+      </div>
+
+      <!-- Gmail Agent -->
+      <div class="agent-card gmail">
+        <div class="agent-header">
+          <span class="agent-emoji">📧</span>
+          <span class="agent-name">G-Mon</span>
+          <span class="agent-tag tag-cron">cron 15m</span>
+        </div>
+        <div class="agent-role">Communications · Inbox Triage</div>
+        <div class="agent-model">deepseek/deepseek-v4-flash</div>
+        <div class="agent-detail"><strong>ID</strong> gmail-agent</div>
+        <div class="agent-detail"><strong>Account</strong> william@hamburgdoor.com</div>
+        <div class="agent-detail"><strong>Timeout</strong> 120s · delivery: none</div>
+      </div>
+
+      <!-- Picture Agent -->
+      <div class="agent-card pics">
+        <div class="agent-header">
+          <span class="agent-emoji">📸</span>
+          <span class="agent-name">Picture Agent</span>
+          <span class="agent-tag tag-lan">LAN</span>
+        </div>
+        <div class="agent-role">Multi-DB Photo Pipeline</div>
+        <div class="agent-model">—</div>
+        <div class="agent-detail"><strong>ID</strong> ts-picture-agent</div>
+        <div class="agent-detail"><strong>SQL</strong> hod-edge (3 DBs)</div>
+        <div class="agent-detail"><strong>Viewer</strong> 192.168.1.118:3000</div>
+        <div class="agent-detail"><strong>Sync</strong> hourly M-F 8-5, Sat 9-12</div>
+      </div>
+
+      <!-- Telegram Bot -->
+      <div class="agent-card telegram">
+        <div class="agent-header">
+          <span class="agent-emoji">🤖</span>
+          <span class="agent-name">Modularhod_bot</span>
+        </div>
+        <div class="agent-role">Telegram Messenger Bridge</div>
+        <div class="agent-model">—</div>
+        <div class="agent-detail"><strong>Platform</strong> @Modularhod_bot</div>
+        <div class="agent-detail"><strong>Mode</strong> requireMention</div>
+        <div class="agent-detail"><strong>Known</strong> IPv6 fallback to v4</div>
+      </div>
+
+      <!-- TT Bot -->
+      <div class="agent-card ttbot">
+        <div class="agent-header">
+          <span class="agent-emoji">🎨</span>
+          <span class="agent-name">Transformation Tuesday Bot</span>
+          <span class="agent-tag tag-pending">training</span>
+        </div>
+        <div class="agent-role">Social Media · Weekly Posts</div>
+        <div class="agent-model">deepseek/deepseek-v4-flash</div>
+        <div class="agent-detail"><strong>ID</strong> transformation-tuesday-bot</div>
+        <div class="agent-detail"><strong>Platforms</strong> Facebook, Instagram</div>
+        <div class="agent-detail"><strong>Status</strong> Registered — needs API keys + cron</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Flow Pipeline -->
+  <div class="pipeline section">
+    <h3>🔄 Data Flow Pipeline</h3>
+    <div class="flow-row">
+      <div class="flow-node">
+        <span class="flow-icon">📥</span>
+        <span class="flow-label">Email Inbox</span>
+        <span style="font-size:0.6rem;color:#64748b;">william@hamburgdoor.com</span>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-node" style="border-color:#22c55e;">
+        <span class="flow-icon">📧</span>
+        <span class="flow-label">Gmail Sync</span>
+        <span style="font-size:0.6rem;color:#64748b;">every 15 min</span>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-branch">
+        <div class="flow-branch-item">
+          <span class="flow-arrow">├</span>
+          <span style="color:#94a3b8;font-size:0.75rem;">Staff · Estimator · Schedule · Service</span>
+          <span class="flow-arrow">→</span>
+          <span style="color:#64748b;font-size:0.65rem;">📁 label + archive</span>
+        </div>
+        <div class="flow-branch-item">
+          <span class="flow-arrow">├</span>
+          <span style="color:#94a3b8;font-size:0.75rem;">GreenSky</span>
+          <span class="flow-arrow">→</span>
+          <span style="color:#64748b;font-size:0.65rem;">📁 label + archive + 🔔 alert William</span>
+        </div>
+        <div class="flow-branch-item">
+          <span class="flow-arrow">├</span>
+          <span style="color:#94a3b8;font-size:0.75rem;">Before & After (Jen Kuhn)</span>
+          <span class="flow-arrow">→</span>
+          <span style="color:#64748b;font-size:0.65rem;">📁 label + archive</span>
+        </div>
+        <div class="flow-branch-item">
+          <span class="flow-arrow">└</span>
+          <span style="color:#94a3b8;font-size:0.75rem;">Before & After photos</span>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node" style="border-color:#ec4899;padding:4px 10px;min-width:auto;">
+            <span style="font-size:0.75rem;">🎨 TT Bot</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <span style="color:#64748b;font-size:0.65rem;">📱 Facebook + Instagram</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Curation Rules -->
+  <div class="section">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <span style="color:#94a3b8;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;">📋 Gmail Curation Rules</span>
+      <span style="font-size:0.65rem;color:#64748b;">gmail-agent · william@hamburgdoor.com</span>
+    </div>
+    <div style="background:#1e293b;border:1px solid #334155;border-radius:12px;overflow:hidden;">
+      <table class="rules-table">
+        <thead>
+          <tr><th>Rule</th><th>Sender / Match</th><th>Label</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Staff Attendance</strong></td>
+            <td>billgeary@ / jen@ · subject "Staff..."</td>
+            <td><code style="color:#60a5fa;">attendance</code> 🔵</td>
+            <td>Archive</td>
+          </tr>
+          <tr>
+            <td><strong>Web Estimator</strong></td>
+            <td>priceestimator@ · "Has Just Used Your Estimator!"</td>
+            <td><code style="color:#60a5fa;">web-estimator</code> 🔵</td>
+            <td>Archive</td>
+          </tr>
+          <tr>
+            <td><strong>Service Schedule</strong></td>
+            <td>Airiana@ · "Service Schedule" / "PUSH ALL RESI SERVICE"</td>
+            <td><code style="color:#60a5fa;">service-schedule</code> 🔵</td>
+            <td>Archive</td>
+          </tr>
+          <tr>
+            <td><strong>Service Requests</strong></td>
+            <td>Servicerequest@hamburgdoor.com</td>
+            <td><code style="color:#60a5fa;">Service Requests</code></td>
+            <td>Archive</td>
+          </tr>
+          <tr>
+            <td><strong>Before & After</strong></td>
+            <td>Subject "Before & After" / "Before and After"</td>
+            <td><code style="color:#60a5fa;">before-&-after</code> 🔵</td>
+            <td>Archive → <strong>Forward to TT Bot</strong></td>
+          </tr>
+          <tr>
+            <td><strong>GreenSky</strong></td>
+            <td>noreply@greenskycredit.com · internal Greensky refs</td>
+            <td><code style="color:#60a5fa;">Greensky</code></td>
+            <td>Archive + 🔔 <strong>Alert William</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- External Services -->
+  <div class="section">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+      <span style="color:#94a3b8;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;">🌐 External Services &amp; Infrastructure</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;">
+      <div style="background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span style="font-size:1.1rem;">📧</span>
+          <strong style="font-size:0.85rem;">Google Workspace</strong>
+        </div>
+        <div style="font-size:0.75rem;color:#94a3b8;">william@hamburgdoor.com · Gmail API</div>
+      </div>
+      <div style="background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span style="font-size:1.1rem;">📱</span>
+          <strong style="font-size:0.85rem;">Telegram</strong>
+        </div>
+        <div style="font-size:0.75rem;color:#94a3b8;">@Modularhod_bot · DM + group chat</div>
+      </div>
+      <div style="background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span style="font-size:1.1rem;">🗄️</span>
+          <strong style="font-size:0.85rem;">MS SQL Server</strong>
+        </div>
+        <div style="font-size:0.75rem;color:#94a3b8;">hod-edge (192.168.1.15) · HOD, WNY, OHD</div>
+      </div>
+      <div style="background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span style="font-size:1.1rem;">🌍</span>
+          <strong style="font-size:0.85rem;">Photo Viewer</strong>
+        </div>
+        <div style="font-size:0.75rem;color:#94a3b8;">192.168.1.118:3000 · Multi-DB tabs</div>
+      </div>
+      <div style="background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span style="font-size:1.1rem;">🖼️</span>
+          <strong style="font-size:0.85rem;">SMB Share</strong>
+        </div>
+        <div style="font-size:0.75rem;color:#94a3b8;">\\hod-edge\SHARED\TicketPics</div>
+      </div>
+      <div style="background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span style="font-size:1.1rem;">📸</span>
+          <strong style="font-size:0.85rem;">Facebook / Instagram</strong>
+        </div>
+        <div style="font-size:0.75rem;color:#94a3b8;">Meta API · Pending setup</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center;padding:16px;font-size:0.7rem;color:#475569;border-top:1px solid #1e293b;">
+    Hamburg Overhead Door · 5659 Herman Hill Rd, Hamburg NY · 716-649-3600
+  </div>
+
+</div>
+
+</body>
+</html>
