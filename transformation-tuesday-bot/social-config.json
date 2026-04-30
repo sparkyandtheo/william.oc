@@ -1,0 +1,42 @@
+{
+  "agent": "transformation-tuesday-bot",
+  "version": 1,
+  "schedule": {
+    "day": "Tuesday",
+    "time": "TBD"
+  },
+  "platforms": {
+    "facebook": {
+      "enabled": false,
+      "page_id": "",
+      "access_token": ""
+    },
+    "instagram": {
+      "enabled": false,
+      "business_account_id": "",
+      "access_token": ""
+    }
+  },
+  "post_template": {
+    "caption": "Transformation Tuesday! 🏠✨ \n\nCheck out this before and after we did for [CUSTOMER NAME] in [CITY/AREA]. \n\nFrom [BRIEF DESCRIPTION OF BEFORE] to [BRIEF DESCRIPTION OF AFTER]. \n\nGreat work by [TECH NAME]! \n\n#TransformationTuesday #HamburgOverheadDoor #OverheadDoor #GarageDoorMakeover [MANUFACTURER_HASHTAGS]",
+    "manufacturer_tags": [
+      "@OverheadDoor",
+      "@GenieCompany",
+      "@WayneDalton",
+      "@ClopayBuildingProducts"
+    ],
+    "hashtags": [
+      "#TransformationTuesday",
+      "#HamburgOverheadDoor",
+      "#GarageDoorMakeover",
+      "#GarageDoorRepair",
+      "#WesternNewYork"
+    ]
+  },
+  "photo_source": {
+    "type": "TBD",
+    "path": "",
+    "notes": ""
+  },
+  "approval_required": true
+}

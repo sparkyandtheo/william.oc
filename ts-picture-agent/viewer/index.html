@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOD Ticket Photo Viewer</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; margin: 0; }
+        .controls { background: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .photo-card { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; flex-direction: column; position: relative; border: 2px solid transparent; transition: all 0.2s; cursor: pointer; }
+        .photo-card.selected { border-color: #28a745; background: #f0fff4; }
+        
+        .selection-badge { position: absolute; top: 15px; left: 15px; background: #28a745; color: white; width: 24px; height: 24px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; z-index: 5; border: 2px solid white; }
+        .photo-card.selected .selection-badge { display: flex; }
+
+        .img-container { width: 100%; position: relative; overflow: hidden; border-radius: 4px; display: flex; align-items: center; justify-content: center; background: #eee; min-height: 200px; }
+        .photo-card img { max-width: 100%; max-height: 100%; transition: transform 0.2s ease; }
+        .photo-card p { margin: 8px 0; font-size: 0.9em; font-weight: bold; }
+        
+        .card-actions { display: flex; gap: 5px; margin-top: 8px; padding-top: 8px; border-top: 1px solid #eee; }
+        .card-actions button { flex: 1; padding: 5px; font-size: 0.8em; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; }
+
+        .tabs { display: flex; gap: 5px; margin-bottom: 15px; border-bottom: 2px solid #ddd; }
+        .tab { padding: 10px 25px; cursor: pointer; background: #eee; border: 1px solid #ddd; border-bottom: none; border-radius: 8px 8px 0 0; font-weight: bold; }
+        .tab.active { background: white; border-bottom: 2px solid white; margin-bottom: -2px; color: #007bff; }
+
+        .action-bar { display: flex; gap: 10px; margin-bottom: 15px; padding: 10px; background: #e9ecef; border-radius: 6px; align-items: center; }
+        .btn-share { background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 5px; }
+        .btn-share:hover { background: #218838; }
+
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; padding: 0; }
+            .photo-grid { display: block; }
+            .photo-card { display: none; break-inside: avoid; page-break-inside: avoid; border: 1px solid #eee; box-shadow: none; margin-bottom: 20px; }
+            .photo-card.selected { display: flex; }
+            .print-all .photo-card { display: flex; }
+            .print-1 .photo-card { height: 95vh; display: flex; flex-direction: column; justify-content: center; page-break-after: always; }
+            .print-1 .img-container { height: 85%; background: none; }
+            .print-1 img { max-height: 100%; object-fit: contain; }
+            .print-4 .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+            .print-4 .photo-card { height: 45vh; }
+            .print-4 .photo-card:nth-child(4n) { page-break-after: always; }
+        }
+
+        input[type="text"] { padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 150px; }
+        button { padding: 8px 15px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <div class="no-print controls">
+        <h1 style="margin-top: 0;">📸 HOD Ticket Photo Viewer</h1>
+        <div id="dbTabs" class="tabs"></div>
+        
+        <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap; margin-bottom: 15px;">
+            <div>
+                <label>Search Ticket #: </label>
+                <input type="text" id="ticketSearch" placeholder="Ticket ID" onkeyup="if(event.key==='Enter') searchTicket()">
+                <button onclick="searchTicket()" style="background: #007bff; color: white; border: none;">Search</button>
+            </div>
+            <div>
+                <label>Recent Tickets: </label>
+                <select id="ticketSelect" onchange="loadPhotosFromSelect()" style="padding: 7px; min-width: 160px;">
+                    <option value="">-- Select --</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="action-bar">
+            <strong>Selection: <span id="selectedCount">0</span></strong>
+            <button onclick="selectAll(true)">Select All</button>
+            <button onclick="selectAll(false)">Clear</button>
+            <div style="flex-grow: 1;"></div>
+            <label>Print Layout: </label>
+            <select id="layoutSelect" onchange="updateLayout()" style="padding: 6px;">
+                <option value="grid">Web Grid</option>
+                <option value="print-1">1 Per Page</option>
+                <option value="print-4">4 Per Page</option>
+            </select>
+            <button class="btn-share" onclick="window.print()">🖨️ Print</button>
+            <button class="btn-share" onclick="shareViaGmail()" style="background: #db4437;">✉️ Email</button>
+            <button class="btn-share" onclick="shareViaChat()" style="background: #4285f4;">💬 Chat</button>
+        </div>
+    </div>
+
+    <div id="photoContainer" class="photo-grid"></div>
+
+    <script>
+        const hostname = window.location.hostname;
+        const apiBase = `http://${hostname}:3000/api`;
+        let currentDb = 'HOD';
+        let currentTicketId = '';
+        let selectedPhotos = new Set();
+
+        async function init() {
+            try {
+                const res = await fetch(`${apiBase}/databases`);
+                const dbs = await res.json();
+                const tabContainer = document.getElementById('dbTabs');
+                tabContainer.innerHTML = '';
+                dbs.forEach(db => {
+                    const tab = document.createElement('div');
+                    tab.className = `tab ${db === currentDb ? 'active' : ''}`;
+                    tab.textContent = db;
+                    tab.onclick = (e) => switchDb(db, e.target);
+                    tabContainer.appendChild(tab);
+                });
+                loadRecentTickets();
+            } catch (e) { console.error(e); }
+        }
+
+        async function switchDb(db, tabEl) {
+            currentDb = db;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            tabEl.classList.add('active');
+            document.getElementById('ticketSearch').value = '';
+            document.getElementById('photoContainer').innerHTML = '';
+            selectedPhotos.clear();
+            updateSelectedCount();
+            loadRecentTickets();
+        }
+
+        async function loadRecentTickets() {
+            try {
+                const select = document.getElementById('ticketSelect');
+                select.innerHTML = '<option value="">Loading...</option>';
+                const res = await fetch(`${apiBase}/${currentDb}/tickets`);
+                const tickets = await res.json();
+                select.innerHTML = `<option value="">-- Recent ${currentDb} --</option>`;
+                tickets.forEach(t => {
+                    const opt = document.createElement('option');
+                    opt.value = t.TicketID;
+                    opt.textContent = `#${t.TicketID}`;
+                    select.appendChild(opt);
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        function loadPhotosFromSelect() {
+            const ticketId = document.getElementById('ticketSelect').value;
+            if (ticketId) {
+                document.getElementById('ticketSearch').value = ticketId;
+                loadPhotos(ticketId);
+            }
+        }
+
+        function searchTicket() {
+            const ticketId = document.getElementById('ticketSearch').value.trim();
+            if (ticketId) loadPhotos(ticketId);
+        }
+
+        async function loadPhotos(ticketId) {
+            currentTicketId = ticketId;
+            selectedPhotos.clear();
+            updateSelectedCount();
+            const container = document.getElementById('photoContainer');
+            container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px;"><h3>Loading Ticket #${ticketId}...</h3></div>`;
+            try {
+                const res = await fetch(`${apiBase}/${currentDb}/photos/${ticketId}`);
+                const photos = await res.json();
+                if (!photos || photos.length === 0) {
+                    container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px;"><h3>No photos found</h3></div>`;
+                    return;
+                }
+                container.innerHTML = '';
+                photos.forEach((p, idx) => {
+                    const card = document.createElement('div');
+                    card.className = 'photo-card';
+                    card.id = `card-${idx}`;
+                    card.onclick = () => toggleSelect(idx);
+                    
+                    card.innerHTML = `
+                        <div class="selection-badge">✓</div>
+                        <div class="img-container">
+                            <img src="data:image/jpeg;base64,${p.PicData}" id="img-${idx}" />
+                        </div>
+                        <p>${p.PictureName || 'Photo'}</p>
+                        <div class="card-actions no-print">
+                            <button onclick="event.stopPropagation(); rotateCardImage('img-${idx}', 90)">🔄 Rotate</button>
+                        </div>`;
+                    container.appendChild(card);
+                });
+            } catch (err) { 
+                console.error(err);
+                container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: red; padding: 40px;"><h3>Error loading photos</h3></div>`;
+            }
+        }
+
+        function toggleSelect(idx) {
+            const card = document.getElementById(`card-${idx}`);
+            if (selectedPhotos.has(idx)) {
+                selectedPhotos.delete(idx);
+                card.classList.remove('selected');
+            } else {
+                selectedPhotos.add(idx);
+                card.classList.add('selected');
+            }
+            updateSelectedCount();
+        }
+
+        function selectAll(shouldSelect) {
+            const cards = document.querySelectorAll('.photo-card');
+            cards.forEach((card, idx) => {
+                if (shouldSelect) {
+                    selectedPhotos.add(idx);
+                    card.classList.add('selected');
+                } else {
+                    selectedPhotos.clear();
+                    card.classList.remove('selected');
+                }
+            });
+            updateSelectedCount();
+        }
+
+        function updateSelectedCount() {
+            document.getElementById('selectedCount').textContent = selectedPhotos.size;
+            if (selectedPhotos.size === 0) {
+                document.body.classList.add('print-all');
+            } else {
+                document.body.classList.remove('print-all');
+            }
+        }
+
+        function rotateCardImage(imgId, degrees) {
+            const img = document.getElementById(imgId);
+            const currentRotation = parseInt(img.dataset.rotation || 0);
+            const newRotation = (currentRotation + degrees) % 360;
+            img.style.transform = `rotate(${newRotation}deg)`;
+            img.dataset.rotation = newRotation;
+        }
+
+        function updateLayout() { document.body.className = document.getElementById('layoutSelect').value; }
+
+        function shareViaGmail() {
+            const url = window.location.href;
+            const subject = `Photos for Ticket #${currentTicketId} (${currentDb})`;
+            const body = `View photos for Ticket #${currentTicketId} here: ${url}\n\nBranch: ${currentDb}`;
+            window.open(`https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+        }
+
+        function shareViaChat() {
+            const url = window.location.href;
+            const text = `HOD Photos: Ticket #${currentTicketId} (${currentDb}) - ${url}`;
+            window.open(`https://chat.google.com/`);
+            navigator.clipboard.writeText(text).then(() => alert("Link copied to clipboard!"));
+        }
+
+        init();
+    </script>
+</body>
+</html>

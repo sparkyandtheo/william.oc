@@ -99,6 +99,12 @@
 - Schedule: `fedora-auto-update` daily 2am EDT, `dnf5-automatic` 6:49am, `dnf-makecache` ~4h, `fstrim` weekly Mon
 - Models: DeepSeek V4 Flash primary, Gemini 3.1 Pro & 3 Flash fallbacks
 
+## Git & GitHub
+- **Remote**: `github.com/sparkyandtheo/william.oc`
+- **First commit**: `c51f0f1` — 14 files (workspace core, architecture page, memory)
+- **Cron**: `Daily Git Sync` at 11:00 PM ET — auto-commits + pushes workspace changes
+- **Excluded**: `openclaw.json` (tokens), `auth-profiles.json`, sessions, media
+
 ## Security
 - SSH active, Firewall hardened, `dnf5-automatic` configured.
 - Config has `gateway.controlUi.allowInsecureAuth=true` (security warning flagged on startup)
