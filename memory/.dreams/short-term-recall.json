@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-30T02:59:08.086Z",
+  "updatedAt": "2026-05-01T02:12:59.301Z",
   "entries": {
     "memory:memory/2026-04-28.md:1:25": {
       "key": "memory:memory/2026-04-28.md:1:25",
@@ -9,13 +9,13 @@
       "endLine": 25,
       "source": "memory",
       "snippet": "# 2026-04-28: Posture Hardening & Curator Initialization ## Status - **Agent Identity**: Curator 🏛️ (Workspace Curator for Hamburg Overhead Door). - **Human Identity**: William Best (Hamburg Overhead Door). - **Environment**: Fedora 43 (Workstation Edition). ## Completed Actions - Initialized `IDENTITY.md`, `USER.md`, and `SOUL.md`. - Performed read-only security audit of the Fedora host. - Configured OpenClaw `tools.elevated` and system `sudoers` for autonomous management. - **Firewall**: Hardened. Broad port range (1025-65535) closed. Samba client removed from local interface. SSH service allowed. Tailscale interface assigned to `public` zone for stricter controls. - **Automatic Updates",
-      "recallCount": 19,
+      "recallCount": 20,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 8.506041687726974,
+      "totalScore": 8.96836814880371,
       "maxScore": 0.47537930905818937,
       "firstRecalledAt": "2026-04-28T18:59:57.019Z",
-      "lastRecalledAt": "2026-04-30T00:30:58.232Z",
+      "lastRecalledAt": "2026-04-30T14:17:36.607Z",
       "queryHashes": [
         "d146634d22ad",
         "f49620047460",
@@ -34,11 +34,13 @@
         "bf44b73cacd1",
         "313b9c0a3adb",
         "49db183181d4",
-        "2938e5cb9c07"
+        "2938e5cb9c07",
+        "891a47ec42d8"
       ],
       "recallDays": [
         "2026-04-28",
-        "2026-04-29"
+        "2026-04-29",
+        "2026-04-30"
       ],
       "conceptTags": [
         "identity.md",
@@ -379,13 +381,13 @@
       "endLine": 52,
       "source": "memory",
       "snippet": "- Workspace created at `/home/william/.openclaw/workspace/transformation-tuesday-bot/` - Currently has SOUL.md only. Ready for training next session. ### Gmail Sync Cron Check (13:03) - Scanned inbox for rule-matching emails (Staff attendance, Service Schedule, web estimators, Service Requests, Before & After, Greensky) - **No new emails matching any rules found.** - Inbox has 4 non-matching threads: Hover call recording, VANCE WO thread (Jen involved), Arctic Wolf security session, TSC BETA discussion (Jen) ### Gmail Agent Registration Updated (11:53) - New \"Before & After\" rule added: subject \"Before & After\" or \"Before and After\" → label `before-&-after` (blue), archive, forward to TT b",
-      "recallCount": 10,
+      "recallCount": 17,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 4.591836071014404,
+      "totalScore": 7.70601378083229,
       "maxScore": 0.5058896034955979,
       "firstRecalledAt": "2026-04-29T18:30:25.078Z",
-      "lastRecalledAt": "2026-04-30T01:31:44.132Z",
+      "lastRecalledAt": "2026-04-30T18:57:41.426Z",
       "queryHashes": [
         "a7d472dc81d9",
         "c279e366e8ce",
@@ -395,10 +397,18 @@
         "0c6969708566",
         "f7d536c6ee26",
         "34859e3e0c5b",
-        "1a5673fbad4d"
+        "1a5673fbad4d",
+        "a7c6d2c634ae",
+        "fdcefdd339f1",
+        "282338c8d218",
+        "c9217378a759",
+        "4360d5e83ac9",
+        "d653b4bd8bac",
+        "5c668f8233ba"
       ],
       "recallDays": [
-        "2026-04-29"
+        "2026-04-29",
+        "2026-04-30"
       ],
       "conceptTags": [
         "home/william",
@@ -516,23 +526,25 @@
       "endLine": 84,
       "source": "memory",
       "snippet": "- **Inbox remaining** (non-rule items): TSC BETA discussion (Guadalupe, IMPORTANT), VANCE WO#215741 (Chuck/Jen) - **UNREAD items** (non-rule, already archived): Voicemails, call recordings, Dell warranty, Bill's lunch schedule ### Gmail Sync (14:58) - **Staff attendance**: No new matches ✅ - **Service schedule**: No new matches ✅ - **Web estimator**: 3 threads found (Deborah Mamott, Brendan Stone, Amy) — all already labeled `web-estimator`, archived, and read from 14:18 run ✅ - **Service Requests**: No new matches ✅ - **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Inbox/UNREAD**: Zero inbox unread. Two UNREAD archived items (VFW sponsorship discussion w/ Jen, Hove",
-      "recallCount": 11,
+      "recallCount": 12,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 5.313459166884422,
-      "maxScore": 0.5117931514978409,
+      "totalScore": 5.834124246239662,
+      "maxScore": 0.5206650793552399,
       "firstRecalledAt": "2026-04-29T19:59:17.227Z",
-      "lastRecalledAt": "2026-04-30T02:44:19.456Z",
+      "lastRecalledAt": "2026-04-30T17:37:17.444Z",
       "queryHashes": [
         "bb387f933e4b",
         "d6f4d3129c05",
         "e1a1361d4806",
         "8febd7722f2e",
         "dc3f67401e85",
-        "7618b74034d1"
+        "7618b74034d1",
+        "5db5e6a3bb00"
       ],
       "recallDays": [
-        "2026-04-29"
+        "2026-04-29",
+        "2026-04-30"
       ],
       "conceptTags": [
         "non-rule",
@@ -685,18 +697,14 @@
       "endLine": 108,
       "source": "memory",
       "snippet": "- **Inbox/UNREAD**: Zero inbox unread. Two UNREAD archived items (VFW sponsorship discussion w/ Jen, Hover call recording) — neither needs curation action. - **Summary**: Nothing to process this cycle. - **Inbox**: 5 read, non-rule items (TSC BETA, VANCE WO thread) — no changes since 14:58. - **Pending**: Before & After photos (Jen 4/28, WO 215695) still waiting on TT bot readiness to forward 2 photos. - **Greensky pending**: Jason Mackiewicz $1,342.00 Transaction Authorized — 50% deposit workflow alert already sent at 14:18. ### Fedora Maintenance Bot Trained (14:00-15:00) - Auto-update skill: `fedora-auto-update` registered with systemd timer (2am daily) - Security audit + hardening capab",
-      "recallCount": 31,
+      "recallCount": 52,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 16.289335036754732,
-      "maxScore": 0.6829099060284894,
+      "totalScore": 26.863055073223144,
+      "maxScore": 0.7176456512500815,
       "firstRecalledAt": "2026-04-29T21:44:09.389Z",
-      "lastRecalledAt": "2026-04-30T02:59:08.086Z",
+      "lastRecalledAt": "2026-04-30T22:06:06.047Z",
       "queryHashes": [
-        "313b9c0a3adb",
-        "e1a1361d4806",
-        "0c6969708566",
-        "bb387f933e4b",
         "80bdc4c083ec",
         "49db183181d4",
         "196bb565ed71",
@@ -713,10 +721,26 @@
         "1a5673fbad4d",
         "8485759ce6ef",
         "af8baa2d3692",
-        "7618b74034d1"
+        "7618b74034d1",
+        "77418af350c1",
+        "ad4294c88652",
+        "a7c6d2c634ae",
+        "fdcefdd339f1",
+        "a72e321a42bd",
+        "51e5984ac663",
+        "282338c8d218",
+        "c9217378a759",
+        "4360d5e83ac9",
+        "25085dc4116f",
+        "d653b4bd8bac",
+        "891a47ec42d8",
+        "5c668f8233ba",
+        "159984b830d2",
+        "8644c8ac571a"
       ],
       "recallDays": [
-        "2026-04-29"
+        "2026-04-29",
+        "2026-04-30"
       ],
       "conceptTags": [
         "inbox/unread",
@@ -768,34 +792,50 @@
       "endLine": 136,
       "source": "memory",
       "snippet": "### Gmail Sync (18:13) - **Staff attendance**: No new matches ✅ - **Service schedule**: No new matches ✅ - **Web estimator**: No new matches ✅ - **Service Requests**: No new matches ✅ - **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Jen Telegram Alert**: No new emails from jen@hamburgdoor.com since last check ✅ - **Inbox**: No changes since 17:58 check. Same 3 threads (TSC BETA, VANCE WO, Arctic Wolf), all read. - **Search sweep**: 41 total unread items — all archived/skip-inbox (voicemails, call recordings, system notifications). No curation action needed. - **Summary**: Nothing to process this cycle. ### Gmail Sync (17:58) - **Staff attendance**: No new matches",
-      "recallCount": 29,
+      "recallCount": 62,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 14.119361950457098,
+      "totalScore": 31.29100512564182,
       "maxScore": 0.5597611635923385,
       "firstRecalledAt": "2026-04-29T22:32:04.881Z",
-      "lastRecalledAt": "2026-04-30T02:59:08.086Z",
+      "lastRecalledAt": "2026-05-01T02:12:59.301Z",
       "queryHashes": [
-        "80bdc4c083ec",
-        "49db183181d4",
-        "bb387f933e4b",
-        "0c6969708566",
-        "196bb565ed71",
-        "8febd7722f2e",
-        "d41cddce5b6b",
-        "00737ddf5216",
-        "3d6f44fc8b88",
-        "43876596000d",
         "f045afd21d91",
         "59179258a672",
         "e5e0816b5fed",
         "dc3f67401e85",
         "1b60d9c7d1a8",
         "57524cd94f4f",
-        "af8baa2d3692"
+        "af8baa2d3692",
+        "97bb4b7694b9",
+        "77418af350c1",
+        "313b9c0a3adb",
+        "31284799fcd7",
+        "10bad103e272",
+        "ad4294c88652",
+        "bdf69c0fe66e",
+        "c0b97a81959d",
+        "d4980d6da05c",
+        "a72e321a42bd",
+        "51e5984ac663",
+        "21b0ca537a33",
+        "ee77bc2c8096",
+        "c489a61083af",
+        "4736be13b507",
+        "25085dc4116f",
+        "134b7916ecce",
+        "891a47ec42d8",
+        "96f7db1efa2f",
+        "bbe94dc489d5",
+        "61c6ba559fc7",
+        "03802928f461",
+        "d3599c7cb97b",
+        "f6327f1dcbd3",
+        "ecf1668d5585"
       ],
       "recallDays": [
-        "2026-04-29"
+        "2026-04-29",
+        "2026-04-30"
       ],
       "conceptTags": [
         "hamburgdoor.com",
@@ -880,17 +920,14 @@
       "endLine": 161,
       "source": "memory",
       "snippet": "- **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Jen Telegram Alert**: No new emails from jen@hamburgdoor.com since last check ✅ - **Inbox**: No changes since 16:58 check. Same messages. - **Summary**: Nothing to process this cycle. ### Gmail Sync (16:58) - **Staff attendance**: No new matches ✅ - **Service schedule**: No new matches ✅ - **Web estimator**: No new matches (already labeled & archived from 14:18) ✅ - **Service Requests**: No new matches ✅ - **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Jen Telegram Alert**: No new emails from jen@hamburgdoor.com since last check ✅ - **Inbox**: Same 8 read messages (TSC BETA, VANCE WO, Arct",
-      "recallCount": 25,
+      "recallCount": 55,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 12.366639570891854,
-      "maxScore": 0.5546919971704483,
+      "totalScore": 28.112326085567464,
+      "maxScore": 0.5637189477682113,
       "firstRecalledAt": "2026-04-29T23:14:09.972Z",
-      "lastRecalledAt": "2026-04-30T02:59:08.086Z",
+      "lastRecalledAt": "2026-05-01T02:12:59.301Z",
       "queryHashes": [
-        "196bb565ed71",
-        "8febd7722f2e",
-        "d41cddce5b6b",
         "00737ddf5216",
         "3d6f44fc8b88",
         "43876596000d",
@@ -903,10 +940,30 @@
         "57524cd94f4f",
         "8485759ce6ef",
         "af8baa2d3692",
-        "7618b74034d1"
+        "7618b74034d1",
+        "97bb4b7694b9",
+        "77418af350c1",
+        "313b9c0a3adb",
+        "10bad103e272",
+        "bdf69c0fe66e",
+        "c0b97a81959d",
+        "a72e321a42bd",
+        "51e5984ac663",
+        "21b0ca537a33",
+        "ee77bc2c8096",
+        "4736be13b507",
+        "b5f7463af9bd",
+        "134b7916ecce",
+        "96f7db1efa2f",
+        "bbe94dc489d5",
+        "61c6ba559fc7",
+        "5db5e6a3bb00",
+        "03802928f461",
+        "f6327f1dcbd3"
       ],
       "recallDays": [
-        "2026-04-29"
+        "2026-04-29",
+        "2026-04-30"
       ],
       "conceptTags": [
         "hamburgdoor.com",
@@ -1020,13 +1077,13 @@
       "endLine": 185,
       "source": "memory",
       "snippet": "- **Inbox**: No changes since 16:58 check. Same 5 inbox items (TSC BETA thread, Arctic Wolf). - **Search sweep**: 29 unread items — all archived voicemails, call recordings, system notifications. No curation action needed. - **Summary**: Nothing to process this cycle. ### Gmail Sync (18:58) - **Staff attendance**: No new matches ✅ - **Service schedule**: No new matches ✅ - **Web estimator**: No new matches ✅ - **Service Requests**: No new matches ✅ - **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Jen Telegram Alert**: No new emails from jen@hamburgdoor.com since last check ✅ - **Inbox**: No changes since 18:43 check. Same items, all previously processed. - **Searc",
-      "recallCount": 12,
+      "recallCount": 21,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 5.9868986248970035,
-      "maxScore": 0.5435470700263977,
+      "totalScore": 10.719940124452114,
+      "maxScore": 0.543728482723236,
       "firstRecalledAt": "2026-04-29T23:59:09.586Z",
-      "lastRecalledAt": "2026-04-30T02:29:08.708Z",
+      "lastRecalledAt": "2026-05-01T00:09:37.642Z",
       "queryHashes": [
         "d41cddce5b6b",
         "00737ddf5216",
@@ -1036,10 +1093,19 @@
         "bb387f933e4b",
         "e5e0816b5fed",
         "dc3f67401e85",
-        "57524cd94f4f"
+        "57524cd94f4f",
+        "97bb4b7694b9",
+        "134b7916ecce",
+        "96f7db1efa2f",
+        "bbe94dc489d5",
+        "61c6ba559fc7",
+        "5db5e6a3bb00",
+        "f6327f1dcbd3",
+        "ecf1668d5585"
       ],
       "recallDays": [
-        "2026-04-29"
+        "2026-04-29",
+        "2026-04-30"
       ],
       "conceptTags": [
         "hamburgdoor.com",
@@ -1090,22 +1156,26 @@
       "endLine": 208,
       "source": "memory",
       "snippet": "- **Inbox**: No changes since 19:13 check. Zero inbox unread, no new messages in last 2h. TSC BETA thread (4 msgs) + Arctic Wolf still in inbox as read items. - **Search sweep**: All unread items are archived system notifications — all previously processed. - **Summary**: Nothing to process this cycle. ✅ ### Gmail Sync (19:13) - **Staff attendance**: No new matches ✅ - **Service schedule**: No new matches ✅ - **Web estimator**: No new matches ✅ - **Service Requests**: No new matches ✅ - **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Jen Telegram Alert**: No new emails from jen@hamburgdoor.com since last check ✅ - **Inbox**: No changes since 18:58 check. Zero inbox",
-      "recallCount": 5,
+      "recallCount": 8,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.491273286938667,
+      "totalScore": 3.911342160403728,
       "maxScore": 0.535077166557312,
       "firstRecalledAt": "2026-04-30T00:59:19.697Z",
-      "lastRecalledAt": "2026-04-30T02:29:15.822Z",
+      "lastRecalledAt": "2026-04-30T17:22:17.349Z",
       "queryHashes": [
         "f045afd21d91",
         "e5e0816b5fed",
         "1b60d9c7d1a8",
         "57524cd94f4f",
-        "af8baa2d3692"
+        "af8baa2d3692",
+        "51e5984ac663",
+        "ee77bc2c8096",
+        "61c6ba559fc7"
       ],
       "recallDays": [
-        "2026-04-29"
+        "2026-04-29",
+        "2026-04-30"
       ],
       "conceptTags": [
         "hamburgdoor.com",
@@ -1378,16 +1448,17 @@
       "endLine": 278,
       "source": "memory",
       "snippet": "- **Search sweep**: 49 unread items — all archived system notifications (voicemails, call recordings), all previously processed. No curation action needed. - **Summary**: Nothing to process this cycle. ✅ ### Gmail Sync (20:13) - **Staff attendance**: No new matches ✅ - **Web estimator**: No new matches ✅ - **Service schedule**: No new matches ✅ - **Service Requests**: No new matches ✅ - **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Jen Telegram Alert**: No new emails from jen@hamburgdoor.com since last check ✅ - **Inbox**: Zero new messages in last hour. Unchanged since 19:58 — same 4 read inbox items (TSC BETA thread, Arctic Wolf). - **Search sweep**: All 47 unr",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.5115231841802599,
-      "maxScore": 0.5086111068725586,
+      "totalScore": 2.025413137674332,
+      "maxScore": 0.513889953494072,
       "firstRecalledAt": "2026-04-30T02:44:08.327Z",
-      "lastRecalledAt": "2026-04-30T02:59:08.062Z",
+      "lastRecalledAt": "2026-04-30T03:14:08.858Z",
       "queryHashes": [
         "bb387f933e4b",
-        "7618b74034d1"
+        "7618b74034d1",
+        "97bb4b7694b9"
       ],
       "recallDays": [
         "2026-04-29"
@@ -1410,18 +1481,31 @@
       "endLine": 258,
       "source": "memory",
       "snippet": "- **Search sweep**: 47+ unread items — all archived system notifications, all previously processed. - **Summary**: Nothing to process this cycle. ✅ ### Gmail Sync (21:13) - **Staff attendance**: No new matches ✅ - **Web estimator**: No new matches ✅ - **Service schedule**: No new matches ✅ - **Service Requests**: No new matches ✅ - **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Jen Telegram Alert**: No new emails from jen@hamburgdoor.com since last check ✅ - **Inbox**: Zero new messages in last hour. Same 5 read inbox items (TSC BETA thread x4, Arctic Wolf x1), unchanged since previous checks. - **Search sweep**: All 47+ unread items are archived system notificati",
-      "recallCount": 2,
+      "recallCount": 17,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.9938429653644562,
-      "maxScore": 0.4969214826822281,
+      "totalScore": 8.877749252319335,
+      "maxScore": 0.5500456541776657,
       "firstRecalledAt": "2026-04-30T02:44:08.327Z",
-      "lastRecalledAt": "2026-04-30T02:59:08.062Z",
+      "lastRecalledAt": "2026-05-01T00:09:37.642Z",
       "queryHashes": [
-        "bb387f933e4b"
+        "bb387f933e4b",
+        "97bb4b7694b9",
+        "313b9c0a3adb",
+        "31284799fcd7",
+        "10bad103e272",
+        "134b7916ecce",
+        "96f7db1efa2f",
+        "bbe94dc489d5",
+        "61c6ba559fc7",
+        "03802928f461",
+        "d3599c7cb97b",
+        "f6327f1dcbd3",
+        "ecf1668d5585"
       ],
       "recallDays": [
-        "2026-04-29"
+        "2026-04-29",
+        "2026-04-30"
       ],
       "conceptTags": [
         "hamburgdoor.com",
@@ -1432,6 +1516,975 @@
         "archived",
         "notifications",
         "previously"
+      ]
+    },
+    "memory:memory/2026-04-29.md:252:281": {
+      "key": "memory:memory/2026-04-29.md:252:281",
+      "path": "memory/2026-04-29.md",
+      "startLine": 252,
+      "endLine": 281,
+      "source": "memory",
+      "snippet": "- **Search sweep**: All unread items are archived system notifications (voicemails, call recordings) — all previously processed. No curation action needed. - **Summary**: Nothing to process this cycle. ✅ ### Gmail Sync (22:28) - **Staff attendance**: No new matches ✅ - **Web estimator**: No new matches ✅ - **Service schedule**: No new matches ✅ - **Service Requests**: No new matches ✅ - **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Jen Telegram Alert**: No new emails from jen@hamburgdoor.com since last check ✅ - **Inbox**: Zero unread. No new messages since 20:13 check. Same 4 read inbox items (TSC BETA thread, Arctic Wolf). - **Search sweep**: 49 unread items —",
+      "recallCount": 27,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 14.015022425353528,
+      "maxScore": 0.553724007308483,
+      "firstRecalledAt": "2026-04-30T03:29:09.044Z",
+      "lastRecalledAt": "2026-05-01T00:09:37.642Z",
+      "queryHashes": [
+        "77418af350c1",
+        "bb387f933e4b",
+        "313b9c0a3adb",
+        "97bb4b7694b9",
+        "31284799fcd7",
+        "10bad103e272",
+        "ad4294c88652",
+        "bdf69c0fe66e",
+        "c0b97a81959d",
+        "a72e321a42bd",
+        "21b0ca537a33",
+        "ee77bc2c8096",
+        "4736be13b507",
+        "25085dc4116f",
+        "134b7916ecce",
+        "96f7db1efa2f",
+        "bbe94dc489d5",
+        "61c6ba559fc7",
+        "5db5e6a3bb00",
+        "03802928f461",
+        "d3599c7cb97b",
+        "f6327f1dcbd3",
+        "ecf1668d5585"
+      ],
+      "recallDays": [
+        "2026-04-29",
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "sweep",
+        "all",
+        "unread",
+        "items",
+        "archived",
+        "notifications",
+        "voicemails"
+      ]
+    },
+    "memory:memory/2026-04-29.md:275:290": {
+      "key": "memory:memory/2026-04-29.md:275:290",
+      "path": "memory/2026-04-29.md",
+      "startLine": 275,
+      "endLine": 290,
+      "source": "memory",
+      "snippet": "- **Inbox**: Zero new messages in last hour. Unchanged since 19:58 — same 4 read inbox items (TSC BETA thread, Arctic Wolf). - **Search sweep**: All 47 unread items are archived system notifications, all previously processed. - **Summary**: Nothing to process this cycle. ✅ ### Gmail Sync (19:58) - **Staff attendance**: No new matches ✅ - **Web estimator**: No new matches ✅ - **Service schedule**: No new matches ✅ - **Service Requests**: No new matches ✅ - **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Jen Telegram Alert**: No new emails from jen@hamburgdoor.com since last check ✅ - **Inbox**: Zero unread inbox messages. All 6 unread threads already archived system",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5039632618427277,
+      "maxScore": 0.5039632618427277,
+      "firstRecalledAt": "2026-04-30T03:29:09.044Z",
+      "lastRecalledAt": "2026-04-30T03:29:09.044Z",
+      "queryHashes": [
+        "77418af350c1"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "inbox",
+        "zero",
+        "new",
+        "messages",
+        "last",
+        "hour",
+        "unchanged"
+      ]
+    },
+    "memory:memory/2026-04-30.md:1:15": {
+      "key": "memory:memory/2026-04-30.md:1:15",
+      "path": "memory/2026-04-30.md",
+      "startLine": 1,
+      "endLine": 15,
+      "source": "memory",
+      "snippet": "# 2026-04-30 ## Gmail Sync (00:13 AM) - **Inbox check:** william@hamburgdoor.com — no new unread emails - All recent messages (April 29) already curated via previous run: attendance, web-estimator, service-schedule, Greensky, before-&-after, jen-alert - **Result:** NO_REPLY — inbox clear ## Gmail Sync (00:43 AM) - **Inbox check:** william@hamburgdoor.com — no new unread emails in inbox - Previous sync at 00:13 already caught everything; 30 min gap yields nothing new - Broader `is:unread` scan found messages in categorized tabs (Forums/Personal), none in INBOX - All prior jen@hamburgdoor.com messages already labeled (jen-alert, before-&-after) - Greensky \"Transaction Request Authorized\" alr",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5562395960092544,
+      "maxScore": 0.5562395960092544,
+      "firstRecalledAt": "2026-04-30T04:59:14.732Z",
+      "lastRecalledAt": "2026-04-30T04:59:14.732Z",
+      "queryHashes": [
+        "31284799fcd7"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "web-estimator",
+        "service-schedule",
+        "jen-alert",
+        "no-reply",
+        "forums/personal",
+        "gmail",
+        "sync"
+      ]
+    },
+    "memory:memory/2026-04-29.md:203:235": {
+      "key": "memory:memory/2026-04-29.md:203:235",
+      "path": "memory/2026-04-29.md",
+      "startLine": 203,
+      "endLine": 235,
+      "source": "memory",
+      "snippet": "- **Inbox**: Zero new messages since 20:13. Same items (TSC BETA thread, Arctic Wolf), all read, unchanged. - **Search sweep**: 47 unread items remain — all archived system notifications, previously processed. - **Summary**: Nothing to process this cycle. ✅ ### Gmail Sync (22:13) - **Staff attendance**: No new matches ✅ - **Web estimator**: No new matches ✅ - **Service schedule**: No new matches ✅ - **Service Requests**: No new matches ✅ - **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Jen Telegram Alert**: No new emails from jen@hamburgdoor.com since last check ✅ - **Inbox**: Zero new messages. Same single read inbox item (Arctic Wolf 4/28). - **Search sweep**: 4",
+      "recallCount": 7,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 3.608973434567451,
+      "maxScore": 0.553254172205925,
+      "firstRecalledAt": "2026-04-30T04:59:14.732Z",
+      "lastRecalledAt": "2026-05-01T00:09:37.642Z",
+      "queryHashes": [
+        "31284799fcd7",
+        "ad4294c88652",
+        "51e5984ac663",
+        "25085dc4116f",
+        "61c6ba559fc7",
+        "d3599c7cb97b",
+        "ecf1668d5585"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "4/28",
+        "inbox",
+        "zero",
+        "new",
+        "messages",
+        "items",
+        "tsc"
+      ]
+    },
+    "memory:memory/2026-04-29.md:299:315": {
+      "key": "memory:memory/2026-04-29.md:299:315",
+      "path": "memory/2026-04-29.md",
+      "startLine": 299,
+      "endLine": 315,
+      "source": "memory",
+      "snippet": "- **Inbox**: Only 1 read item (Arctic Wolf Security Awareness from Apr 28) — no changes since last check. - **Search sweep**: 48 unread items — all archived system notifications (voicemails, call recordings, promos), all previously processed. - **New messages in last 6h**: Zero. None since ~20:13. - **Summary**: Nothing to process this cycle. ✅ ### Gmail Sync (23:58) - **Inbox**: Zero unread inbox messages. No new emails since 22:28 check. ✅ - **Staff attendance**: No new matches ✅ - **Web estimator**: No new matches ✅ - **Service schedule**: No new matches ✅ - **Service Requests**: No new matches ✅ - **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Jen Telegram Ale",
+      "recallCount": 6,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2.9557735502719877,
+      "maxScore": 0.5463180780410766,
+      "firstRecalledAt": "2026-04-30T04:59:14.732Z",
+      "lastRecalledAt": "2026-04-30T17:22:17.349Z",
+      "queryHashes": [
+        "31284799fcd7",
+        "bb387f933e4b",
+        "a72e321a42bd",
+        "4360d5e83ac9",
+        "ee77bc2c8096",
+        "61c6ba559fc7"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "inbox",
+        "only",
+        "read",
+        "item",
+        "arctic",
+        "wolf",
+        "security",
+        "awareness"
+      ]
+    },
+    "memory:memory/2026-04-29.md:275:303": {
+      "key": "memory:memory/2026-04-29.md:275:303",
+      "path": "memory/2026-04-29.md",
+      "startLine": 275,
+      "endLine": 303,
+      "source": "memory",
+      "snippet": "- **Inbox**: Zero new messages in last hour. Unchanged since 19:58 — same 4 read inbox items (TSC BETA thread, Arctic Wolf). - **Search sweep**: All 47 unread items are archived system notifications, all previously processed. - **Summary**: Nothing to process this cycle. ✅ ### Gmail Sync (19:58) - **Staff attendance**: No new matches ✅ - **Web estimator**: No new matches ✅ - **Service schedule**: No new matches ✅ - **Service Requests**: No new matches ✅ - **Before & After**: No new matches ✅ - **Greensky**: No new matches ✅ - **Jen Telegram Alert**: No new emails from jen@hamburgdoor.com since last check ✅ - **Inbox**: Zero unread inbox messages. All 6 unread threads already archived system",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.4799349799752235,
+      "maxScore": 0.5346585884690285,
+      "firstRecalledAt": "2026-04-30T05:14:11.655Z",
+      "lastRecalledAt": "2026-04-30T17:22:17.349Z",
+      "queryHashes": [
+        "10bad103e272",
+        "ee77bc2c8096",
+        "61c6ba559fc7"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "inbox",
+        "zero",
+        "new",
+        "messages",
+        "last",
+        "hour",
+        "unchanged"
+      ]
+    },
+    "memory:memory/2026-04-30.md:1:29": {
+      "key": "memory:memory/2026-04-30.md:1:29",
+      "path": "memory/2026-04-30.md",
+      "startLine": 1,
+      "endLine": 29,
+      "source": "memory",
+      "snippet": "# 2026-04-30 ## Gmail Sync (00:13 AM) - **Inbox check:** william@hamburgdoor.com — no new unread emails - All recent messages (April 29) already curated via previous run: attendance, web-estimator, service-schedule, Greensky, before-&-after, jen-alert - **Result:** NO_REPLY — inbox clear ## Gmail Sync (00:43 AM) - **Inbox check:** william@hamburgdoor.com — no new unread emails in inbox - Previous sync at 00:13 already caught everything; 30 min gap yields nothing new - Broader `is:unread` scan found messages in categorized tabs (Forums/Personal), none in INBOX - All prior jen@hamburgdoor.com messages already labeled (jen-alert, before-&-after) - Greensky \"Transaction Request Authorized\" alr",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.47275913059711455,
+      "maxScore": 0.47275913059711455,
+      "firstRecalledAt": "2026-04-30T05:14:20.087Z",
+      "lastRecalledAt": "2026-04-30T05:14:20.087Z",
+      "queryHashes": [
+        "ad4294c88652"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "web-estimator",
+        "service-schedule",
+        "jen-alert",
+        "no-reply",
+        "forums/personal",
+        "gmail",
+        "sync"
+      ]
+    },
+    "memory:memory/2026-04-30.md:1:25": {
+      "key": "memory:memory/2026-04-30.md:1:25",
+      "path": "memory/2026-04-30.md",
+      "startLine": 1,
+      "endLine": 25,
+      "source": "memory",
+      "snippet": "# 2026-04-30 Daily Log ## 01:58 AM — Gmail Sync (Cron) **Inbox Status:** 1 message in inbox (Arctic Wolf Security Awareness from Apr 28). Zero unread in inbox. **Curation Rules Applied — All Negative:** - ❌ Staff Attendance — No \"Staff\" subject emails from billgeary@ or jen@ - ❌ Web Estimator — No estimator notifications or replies - ❌ Service Schedule — No emails from Airiana@ - ❌ Service Request — No emails from Servicerequest@ - ❌ Before & After — No new B&A emails (previous B&A #215695 from Apr 28 already labeled) - ❌ GreenSky — No Greensky emails **Jen-Telegram-Alert Check:** - ✅ No new unread jen@hamburgdoor.com emails needing alert - One existing unread Jen email (Samantha Doc/Quo",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9603735536336897,
+      "maxScore": 0.5088831216096877,
+      "firstRecalledAt": "2026-04-30T06:29:08.420Z",
+      "lastRecalledAt": "2026-04-30T06:29:08.445Z",
+      "queryHashes": [
+        "8485759ce6ef",
+        "bb387f933e4b"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "jen-telegram-alert",
+        "hamburgdoor.com",
+        "doc/quo",
+        "log",
+        "gmail",
+        "sync",
+        "cron",
+        "inbox"
+      ]
+    },
+    "memory:memory/2026-04-30.md:29:49": {
+      "key": "memory:memory/2026-04-30.md:29:49",
+      "path": "memory/2026-04-30.md",
+      "startLine": 29,
+      "endLine": 49,
+      "source": "memory",
+      "snippet": "**Curation Rules Applied — All Negative:** - ❌ Staff Attendance — No new \"Staff\" subject emails - ❌ Web Estimator — No estimator notifications - ❌ Service Schedule — No new Airiana@ emails - ❌ Service Request — No new Servicerequest@ emails - ❌ Before & After — B&A #215695 from Apr 28 already labeled `before-&-after` - ❌ GreenSky — No new Greensky emails (existing password updates from Apr 15/17 already labeled) **Jen-Telegram-Alert Check:** - ✅ No new unread jen@hamburgdoor.com emails since last check - Existing unread Jen (Samantha Doc/Quote JS-260113, Apr 28) remains labeled `jen-alert` — already processed - Jen unread backlog (Apr 15-27) unchanged — no new items **Notable Items (uncha",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9818926334381103,
+      "maxScore": 0.5299731612205505,
+      "firstRecalledAt": "2026-04-30T06:59:09.047Z",
+      "lastRecalledAt": "2026-04-30T06:59:09.072Z",
+      "queryHashes": [
+        "0c6969708566",
+        "bb387f933e4b"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "15/17",
+        "jen-telegram-alert",
+        "hamburgdoor.com",
+        "doc/quote",
+        "js-260113",
+        "jen-alert",
+        "15-27",
+        "curation"
+      ]
+    },
+    "memory:memory/2026-04-30.md:1:35": {
+      "key": "memory:memory/2026-04-30.md:1:35",
+      "path": "memory/2026-04-30.md",
+      "startLine": 1,
+      "endLine": 35,
+      "source": "memory",
+      "snippet": "# 2026-04-30 Daily Log ## 01:58 AM — Gmail Sync (Cron) **Inbox Status:** 1 message in inbox (Arctic Wolf Security Awareness from Apr 28). Zero unread in inbox. **Curation Rules Applied — All Negative:** - ❌ Staff Attendance — No \"Staff\" subject emails from billgeary@ or jen@ - ❌ Web Estimator — No estimator notifications or replies - ❌ Service Schedule — No emails from Airiana@ - ❌ Service Request — No emails from Servicerequest@ - ❌ Before & After — No new B&A emails (previous B&A #215695 from Apr 28 already labeled) - ❌ GreenSky — No Greensky emails **Jen-Telegram-Alert Check:** - ✅ No new unread jen@hamburgdoor.com emails needing alert - One existing unread Jen email (Samantha Doc/Quo",
+      "recallCount": 6,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2.906071311235428,
+      "maxScore": 0.5129951149225235,
+      "firstRecalledAt": "2026-04-30T06:59:09.047Z",
+      "lastRecalledAt": "2026-04-30T09:29:09.002Z",
+      "queryHashes": [
+        "0c6969708566",
+        "bb387f933e4b",
+        "bdf69c0fe66e"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "jen-telegram-alert",
+        "hamburgdoor.com",
+        "doc/quo",
+        "log",
+        "gmail",
+        "sync",
+        "cron",
+        "inbox"
+      ]
+    },
+    "memory:memory/2026-04-30.md:56:69": {
+      "key": "memory:memory/2026-04-30.md:56:69",
+      "path": "memory/2026-04-30.md",
+      "startLine": 56,
+      "endLine": 69,
+      "source": "memory",
+      "snippet": "**Curation Rules Applied — All Negative:** - ❌ Staff Attendance — No new \"Staff\" subject emails - ❌ Web Estimator — No new estimator notifications (existing ones already labeled) - ❌ Service Schedule — No new Airiana@ emails (existing Apr 29 schedule already labeled) - ❌ Service Request — No new Servicerequest@ emails - ❌ Before & After — No new B&A emails - ❌ GreenSky — No new Greensky emails (Apr 29 GS Transaction Authorized + WO 216211 thread already labeled) **Jen-Telegram-Alert Check:** - ✅ No new unread jen@hamburgdoor.com emails since last check - Existing Jen unread backlog (Apr 15-28) — unchanged, no new items **Action Taken:** None. NO_REPLY.",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.54687569886446,
+      "maxScore": 0.54687569886446,
+      "firstRecalledAt": "2026-04-30T07:29:11.892Z",
+      "lastRecalledAt": "2026-04-30T07:29:11.892Z",
+      "queryHashes": [
+        "bdf69c0fe66e"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "jen-telegram-alert",
+        "hamburgdoor.com",
+        "15-28",
+        "no-reply",
+        "curation",
+        "rules",
+        "applied",
+        "all"
+      ]
+    },
+    "memory:memory/2026-04-30.md:29:61": {
+      "key": "memory:memory/2026-04-30.md:29:61",
+      "path": "memory/2026-04-30.md",
+      "startLine": 29,
+      "endLine": 61,
+      "source": "memory",
+      "snippet": "**Curation Rules Applied — All Negative:** - ❌ Staff Attendance — No new \"Staff\" subject emails - ❌ Web Estimator — No estimator notifications - ❌ Service Schedule — No new Airiana@ emails - ❌ Service Request — No new Servicerequest@ emails - ❌ Before & After — B&A #215695 from Apr 28 already labeled `before-&-after` - ❌ GreenSky — No new Greensky emails (existing password updates from Apr 15/17 already labeled) **Jen-Telegram-Alert Check:** - ✅ No new unread jen@hamburgdoor.com emails since last check - Existing unread Jen (Samantha Doc/Quote JS-260113, Apr 28) remains labeled `jen-alert` — already processed - Jen unread backlog (Apr 15-27) unchanged — no new items **Notable Items (uncha",
+      "recallCount": 8,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 4.086383122205734,
+      "maxScore": 0.5475221171975135,
+      "firstRecalledAt": "2026-04-30T07:29:11.892Z",
+      "lastRecalledAt": "2026-04-30T10:29:10.817Z",
+      "queryHashes": [
+        "bdf69c0fe66e",
+        "bb387f933e4b",
+        "8485759ce6ef",
+        "0c6969708566",
+        "c0b97a81959d",
+        "d4980d6da05c"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "15/17",
+        "jen-telegram-alert",
+        "hamburgdoor.com",
+        "doc/quote",
+        "js-260113",
+        "jen-alert",
+        "15-27",
+        "curation"
+      ]
+    },
+    "memory:memory/2026-04-30.md:79:89": {
+      "key": "memory:memory/2026-04-30.md:79:89",
+      "path": "memory/2026-04-30.md",
+      "startLine": 79,
+      "endLine": 89,
+      "source": "memory",
+      "snippet": "- ❌ Service Schedule — No new Airiana@ emails - ❌ Service Request — No new Servicerequest@ emails - ❌ Before & After — No new B&A emails (B&A #215695 from Apr 28 already labeled) - ❌ GreenSky — No new Greensky emails **Jen-Telegram-Alert Check:** - ✅ No new unread jen@hamburgdoor.com emails since last check (02:58 AM) - Existing Jen items unchanged: Samantha Doc/Quote (jen-alert), voicemail backlog, older items — none new **Action Taken:** None. NO_REPLY.",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5429556533694266,
+      "maxScore": 0.5429556533694266,
+      "firstRecalledAt": "2026-04-30T08:29:11.714Z",
+      "lastRecalledAt": "2026-04-30T08:29:11.714Z",
+      "queryHashes": [
+        "bdf69c0fe66e"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "jen-telegram-alert",
+        "hamburgdoor.com",
+        "doc/quote",
+        "jen-alert",
+        "no-reply",
+        "service",
+        "schedule",
+        "new"
+      ]
+    },
+    "memory:memory/2026-04-30.md:56:85": {
+      "key": "memory:memory/2026-04-30.md:56:85",
+      "path": "memory/2026-04-30.md",
+      "startLine": 56,
+      "endLine": 85,
+      "source": "memory",
+      "snippet": "**Curation Rules Applied — All Negative:** - ❌ Staff Attendance — No new \"Staff\" subject emails - ❌ Web Estimator — No new estimator notifications (existing ones already labeled) - ❌ Service Schedule — No new Airiana@ emails (existing Apr 29 schedule already labeled) - ❌ Service Request — No new Servicerequest@ emails - ❌ Before & After — No new B&A emails - ❌ GreenSky — No new Greensky emails (Apr 29 GS Transaction Authorized + WO 216211 thread already labeled) **Jen-Telegram-Alert Check:** - ✅ No new unread jen@hamburgdoor.com emails since last check - Existing Jen unread backlog (Apr 15-28) — unchanged, no new items **Action Taken:** None. NO_REPLY. ## 03:28 AM — Gmail Sync (Cron) **I",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5361299589276314,
+      "maxScore": 0.5361299589276314,
+      "firstRecalledAt": "2026-04-30T08:29:11.714Z",
+      "lastRecalledAt": "2026-04-30T08:29:11.714Z",
+      "queryHashes": [
+        "bdf69c0fe66e"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "jen-telegram-alert",
+        "hamburgdoor.com",
+        "15-28",
+        "no-reply",
+        "curation",
+        "rules",
+        "applied",
+        "all"
+      ]
+    },
+    "memory:memory/2026-04-30.md:56:88": {
+      "key": "memory:memory/2026-04-30.md:56:88",
+      "path": "memory/2026-04-30.md",
+      "startLine": 56,
+      "endLine": 88,
+      "source": "memory",
+      "snippet": "**Curation Rules Applied — All Negative:** - ❌ Staff Attendance — No new \"Staff\" subject emails - ❌ Web Estimator — No new estimator notifications (existing ones already labeled) - ❌ Service Schedule — No new Airiana@ emails (existing Apr 29 schedule already labeled) - ❌ Service Request — No new Servicerequest@ emails - ❌ Before & After — No new B&A emails - ❌ GreenSky — No new Greensky emails (Apr 29 GS Transaction Authorized + WO 216211 thread already labeled) **Jen-Telegram-Alert Check:** - ✅ No new unread jen@hamburgdoor.com emails since last check - Existing Jen unread backlog (Apr 15-28) — unchanged, no new items **Action Taken:** None. NO_REPLY. ## 04:28 AM — Gmail Sync (Cron) **I",
+      "recallCount": 6,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 3.0389205947518345,
+      "maxScore": 0.5538218483328818,
+      "firstRecalledAt": "2026-04-30T08:44:09.077Z",
+      "lastRecalledAt": "2026-04-30T10:29:10.817Z",
+      "queryHashes": [
+        "bb387f933e4b",
+        "8485759ce6ef",
+        "0c6969708566",
+        "c0b97a81959d",
+        "d4980d6da05c"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "jen-telegram-alert",
+        "hamburgdoor.com",
+        "15-28",
+        "no-reply",
+        "curation",
+        "rules",
+        "applied",
+        "all"
+      ]
+    },
+    "memory:memory/2026-04-30.md:82:110": {
+      "key": "memory:memory/2026-04-30.md:82:110",
+      "path": "memory/2026-04-30.md",
+      "startLine": 82,
+      "endLine": 110,
+      "source": "memory",
+      "snippet": "- ❌ Before & After — No new B&A emails (B&A #215695 from Apr 28 already labeled) - ❌ GreenSky — No new Greensky emails **Jen-Telegram-Alert Check:** - ✅ No new unread jen@hamburgdoor.com emails since last check (03:28 AM) - Existing Jen items unchanged: Samantha Doc/Quote (jen-alert), TSC BETA thread (jen-alert), older items **Action Taken:** None. NO_REPLY. ## 03:28 AM — Gmail Sync (Cron) **Inbox Status:** 1 message in inbox (Arctic Wolf Security Awareness from Apr 28) — read, unchanged. Zero unread in inbox. **Search Sweep:** 45+ unread items found across all labels — all voicemail threads (vtext@hovernetworks.com), call recordings, Verizon scheduled reports, and marketing emails. Non",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9806774228811264,
+      "maxScore": 0.5227014660835266,
+      "firstRecalledAt": "2026-04-30T08:44:09.077Z",
+      "lastRecalledAt": "2026-04-30T08:44:09.085Z",
+      "queryHashes": [
+        "bb387f933e4b",
+        "8485759ce6ef"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "network",
+        "jen-telegram-alert",
+        "hamburgdoor.com",
+        "doc/quote",
+        "jen-alert",
+        "no-reply",
+        "hovernetworks.com",
+        "new"
+      ]
+    },
+    "memory:memory/2026-04-30.md:82:117": {
+      "key": "memory:memory/2026-04-30.md:82:117",
+      "path": "memory/2026-04-30.md",
+      "startLine": 82,
+      "endLine": 117,
+      "source": "memory",
+      "snippet": "- ❌ Before & After — No new B&A emails (B&A #215695 from Apr 28 already labeled) - ❌ GreenSky — No new Greensky emails **Jen-Telegram-Alert Check:** - ✅ No new unread jen@hamburgdoor.com emails since last check (03:28 AM) - Existing Jen items unchanged: Samantha Doc/Quote (jen-alert), TSC BETA thread (jen-alert), older items **Action Taken:** None. NO_REPLY. ## 04:43 AM — Gmail Sync (Cron) **Inbox Status:** 1 message in inbox (Arctic Wolf Security Awareness from Apr 28) — read, unchanged. Zero unread in inbox. **New Since Last Check (04:28 AM):** None. Zero new emails since 04:04 AM Verizon scheduled report. **Curation Rules Applied — All Negative:** - ❌ Staff Attendance — No new \"Staf",
+      "recallCount": 4,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2.053787034749985,
+      "maxScore": 0.5558589652180671,
+      "firstRecalledAt": "2026-04-30T09:29:09.002Z",
+      "lastRecalledAt": "2026-04-30T10:29:10.817Z",
+      "queryHashes": [
+        "0c6969708566",
+        "bb387f933e4b",
+        "c0b97a81959d",
+        "d4980d6da05c"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "jen-telegram-alert",
+        "hamburgdoor.com",
+        "doc/quote",
+        "jen-alert",
+        "no-reply",
+        "new",
+        "emails",
+        "apr"
+      ]
+    },
+    "memory:memory/2026-04-30.md:113:140": {
+      "key": "memory:memory/2026-04-30.md:113:140",
+      "path": "memory/2026-04-30.md",
+      "startLine": 113,
+      "endLine": 140,
+      "source": "memory",
+      "snippet": "**Inbox Status:** 1 message in inbox (Arctic Wolf Security Awareness from Apr 28) — read, unchanged. Zero unread in inbox. **Search Sweep:** 45+ unread items found across all labels — all voicemail threads (vtext@hovernetworks.com), call recordings, Verizon scheduled reports, and marketing emails. None match curation rules. **Curation Rules Applied — All Negative:** - ❌ Staff Attendance — No new \"Staff\" subject emails from billgeary@ or jen@ - ❌ Web Estimator — No estimator notifications or replies - ❌ Service Schedule — No new Airiana@ emails - ❌ Service Request — No new Servicerequest@ emails - ❌ Before & After — No new B&A emails (B&A #215695 from Apr 28 already labeled) - ❌ GreenSky —",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5220558196306229,
+      "maxScore": 0.5220558196306229,
+      "firstRecalledAt": "2026-04-30T09:29:09.028Z",
+      "lastRecalledAt": "2026-04-30T09:29:09.028Z",
+      "queryHashes": [
+        "bb387f933e4b"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "network",
+        "hovernetworks.com",
+        "inbox",
+        "status",
+        "message",
+        "arctic",
+        "wolf",
+        "security"
+      ]
+    },
+    "memory:memory/2026-04-30.md:136:160": {
+      "key": "memory:memory/2026-04-30.md:136:160",
+      "path": "memory/2026-04-30.md",
+      "startLine": 136,
+      "endLine": 160,
+      "source": "memory",
+      "snippet": "**Total UNREAD** (in category tabs): ~47 messages, mostly voicemail threads, Verizon reports, marketing. None in inbox. **Jen@hamburgdoor.com:** 0 new emails today. Last Jen emails (Apr 28) already labeled (jen-alert / before-&-after). **Result:** NO_REPLY — no new mail requiring curation. ## 5:58 AM — Gmail Sync (Cron) **Inbox:** 1 read message (Arctic Wolf, Apr 28). Zero unread in INBOX. **New Since 5:13 AM:** Only Verizon Scheduled Report (04:04 AM, CATEGORY_UPDATES, NOT a curation rule match). **Curation Rules Applied — All Negative:** - ❌ Staff Attendance — No new \"Staff\" subject emails - ❌ Web Estimator — No new estimator notifications or replies - ❌ Service Schedule — No new Airi",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5261191844940185,
+      "maxScore": 0.5261191844940185,
+      "firstRecalledAt": "2026-04-30T10:29:10.817Z",
+      "lastRecalledAt": "2026-04-30T10:29:10.817Z",
+      "queryHashes": [
+        "d4980d6da05c"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "jen-alert",
+        "no-reply",
+        "category-updates",
+        "total",
+        "unread",
+        "category",
+        "tabs"
+      ]
+    },
+    "memory:memory/2026-04-30.md:113:144": {
+      "key": "memory:memory/2026-04-30.md:113:144",
+      "path": "memory/2026-04-30.md",
+      "startLine": 113,
+      "endLine": 144,
+      "source": "memory",
+      "snippet": "**Inbox Status:** 1 message in inbox (Arctic Wolf Security Awareness from Apr 28) — read, unchanged. Zero unread in inbox. **Search Sweep:** 45+ unread items found across all labels — all voicemail threads (vtext@hovernetworks.com), call recordings, Verizon scheduled reports, and marketing emails. None match curation rules. **Curation Rules Applied — All Negative:** - ❌ Staff Attendance — No new \"Staff\" subject emails from billgeary@ or jen@ - ❌ Web Estimator — No estimator notifications or replies - ❌ Service Schedule — No new Airiana@ emails - ❌ Service Request — No new Servicerequest@ emails - ❌ Before & After — No new B&A emails (B&A #215695 from Apr 28 already labeled) - ❌ GreenSky —",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5228146195411681,
+      "maxScore": 0.5228146195411681,
+      "firstRecalledAt": "2026-04-30T10:29:10.817Z",
+      "lastRecalledAt": "2026-04-30T10:29:10.817Z",
+      "queryHashes": [
+        "d4980d6da05c"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "network",
+        "hovernetworks.com",
+        "inbox",
+        "status",
+        "message",
+        "arctic",
+        "wolf",
+        "security"
+      ]
+    },
+    "memory:memory/2026-04-30.md:26:53": {
+      "key": "memory:memory/2026-04-30.md:26:53",
+      "path": "memory/2026-04-30.md",
+      "startLine": 26,
+      "endLine": 53,
+      "source": "memory",
+      "snippet": "1. ✅ **Staff attendance** (19dde32d96a2ccee) — \"staff 4-30\" → labeled `attendance`, archived. - Out: Beth, Aaron; Bill G late; Sheri M leaves 2pm ### jen-telegram-alert Fires (3 emails) 2. 📤 **\"meetings today\"** (19dde30ea2252296) — labeled `jen-alert`, Telegram sent, archived. - Jen in meetings 10am-5pm, limited email responses 3. 📤 **\"Fwd: TSC BETA for Hamburg Door\"** (19dde2f001c7c888) — labeled `jen-alert`, Telegram sent, archived. - Jen: \"let's review this morning first thing\" — Robert Guadalupe (Total Service) proposing TS Cloud pilot starting 5/11 4. 📤 **\"Fwd: Action Required for TSCloud Migration\"** (19dde2e67cce6a56) — labeled `jen-alert`, Telegram sent, archived.",
+      "recallCount": 9,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 4.610190191864967,
+      "maxScore": 0.5716250970959663,
+      "firstRecalledAt": "2026-04-30T11:59:11.147Z",
+      "lastRecalledAt": "2026-04-30T13:14:12.951Z",
+      "queryHashes": [
+        "21b0ca537a33",
+        "bb387f933e4b",
+        "0c6969708566",
+        "4360d5e83ac9",
+        "ee77bc2c8096",
+        "c489a61083af",
+        "4736be13b507",
+        "25085dc4116f",
+        "b5f7463af9bd"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "4-30",
+        "jen-telegram-alert",
+        "jen-alert",
+        "10am-5pm",
+        "5/11",
+        "staff",
+        "attendance",
+        "19dde32d96a2ccee"
+      ]
+    },
+    "memory:memory/2026-04-30.md:1:32": {
+      "key": "memory:memory/2026-04-30.md:1:32",
+      "path": "memory/2026-04-30.md",
+      "startLine": 1,
+      "endLine": 32,
+      "source": "memory",
+      "snippet": "# 2026-04-30 ## Gmail Sync — 6:43 AM **Inbox status:** Clean — no unread messages in inbox. **Unread in categories (existing, unprocessed):** - Verizon Connect \"Scheduled Report\" (Apr 30, 04:04) — standard report, no curation rule match - Multiple voicemail threads from vtext@hovernetworks.com — no curation rule match - Internal call recording notifications from admin@hovernetworks.com — no curation rule match - Promotional emails (DigitalOcean, Fireflies.ai, Dell, etc.) — no curation rule match **Jen Kuhn catch-up processing (week-old items found in CATEGORY_*):** Cleaned up 7 old Jen@ emails that weren't caught by any rule and were still unread: 1. \"Fwd: Message from JLL Avangrid (Noah",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.4257884532213212,
+      "maxScore": 0.529045820236206,
+      "firstRecalledAt": "2026-04-30T11:59:11.147Z",
+      "lastRecalledAt": "2026-04-30T12:30:39.699Z",
+      "queryHashes": [
+        "21b0ca537a33",
+        "0c6969708566",
+        "ee77bc2c8096"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "network",
+        "hovernetworks.com",
+        "fireflies.ai",
+        "catch-up",
+        "week-old",
+        "gmail",
+        "sync",
+        "inbox"
+      ]
+    },
+    "memory:memory/2026-04-30.md:47:59": {
+      "key": "memory:memory/2026-04-30.md:47:59",
+      "path": "memory/2026-04-30.md",
+      "startLine": 47,
+      "endLine": 59,
+      "source": "memory",
+      "snippet": "2. ✅ **Web estimator** — No new matches (3 from Apr 29, already labeled) 3. ✅ **Service schedule** — No new matches (Airiana Apr 29, already labeled) 4. ✅ **Service requests** — No new matches 5. ✅ **Before & After** — No new matches 6. ✅ **GreenSky** — No new matches (Apr 29 transaction already processed) 7. ✅ **Jen Telegram Alert** — No new emails from jen@hamburgdoor.com **New since last check (6:43):** Nothing. **Unread elsewhere:** Verizon Connect daily report (04:04) — standard system notification, no curation action. **Summary:** Nothing to process this cycle. ✅",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5144497752189636,
+      "maxScore": 0.5144497752189636,
+      "firstRecalledAt": "2026-04-30T11:59:11.147Z",
+      "lastRecalledAt": "2026-04-30T11:59:11.147Z",
+      "queryHashes": [
+        "21b0ca537a33"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "web",
+        "estimator",
+        "new",
+        "matches",
+        "apr",
+        "already",
+        "labeled"
+      ]
+    },
+    "memory:memory/2026-04-30.md:47:71": {
+      "key": "memory:memory/2026-04-30.md:47:71",
+      "path": "memory/2026-04-30.md",
+      "startLine": 47,
+      "endLine": 71,
+      "source": "memory",
+      "snippet": "2. ✅ **Web estimator** — No new matches (3 from Apr 29, already labeled) 3. ✅ **Service schedule** — No new matches (Airiana Apr 29, already labeled) 4. ✅ **Service requests** — No new matches 5. ✅ **Before & After** — No new matches 6. ✅ **GreenSky** — No new matches (Apr 29 transaction already processed) 7. ✅ **Jen Telegram Alert** — No new emails from jen@hamburgdoor.com **New since last check (6:43):** ### Curation Rules Applied 1. ✅ **Staff attendance** — No new matches 2. ✅ **Web estimator** — No new matches 3. ✅ **Service schedule** — No new matches 4. 💼 **Service Requests** — WO#168017 - MAJOR FS (Regine Ligsa via servicerequest list, asking for final cost confirmation, 08:00) →",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9712359830737114,
+      "maxScore": 0.5319615975022316,
+      "firstRecalledAt": "2026-04-30T12:14:10.525Z",
+      "lastRecalledAt": "2026-04-30T12:14:10.555Z",
+      "queryHashes": [
+        "bb387f933e4b",
+        "0c6969708566"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "web",
+        "estimator",
+        "new",
+        "matches",
+        "apr",
+        "already",
+        "labeled"
+      ]
+    },
+    "memory:memory/2026-04-30.md:77:91": {
+      "key": "memory:memory/2026-04-30.md:77:91",
+      "path": "memory/2026-04-30.md",
+      "startLine": 77,
+      "endLine": 91,
+      "source": "memory",
+      "snippet": "1. ✅ **Staff attendance** — No new matches 2. ✅ **Web estimator** — No new matches 3. ✅ **Service schedule** — No new matches 4. 💼 **Service Requests** — WO#168017 - MAJOR FS (Mike Doherty reply, 08:10) → labeled `Service Requests`, archived. Continuation of Regine Ligsa thread from 08:00. 5. ✅ **Before & After** — No new matches 6. ✅ **GreenSky** — No new matches ### Jen Telegram Alert ✅ No new unread emails from jen@hamburgdoor.com since last check. ### Cleanup - Arctic Wolf Security Awareness read message (Apr 28) — removed from inbox (was lingering read). **Summary:** Nothing urgent. Standard WO continuity.",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8754873275756836,
+      "maxScore": 0.4439802467823028,
+      "firstRecalledAt": "2026-04-30T12:30:25.488Z",
+      "lastRecalledAt": "2026-04-30T12:30:39.699Z",
+      "queryHashes": [
+        "4360d5e83ac9",
+        "ee77bc2c8096"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "staff",
+        "attendance",
+        "new",
+        "matches",
+        "web",
+        "estimator",
+        "service"
+      ]
+    },
+    "memory:memory/2026-04-30.md:47:81": {
+      "key": "memory:memory/2026-04-30.md:47:81",
+      "path": "memory/2026-04-30.md",
+      "startLine": 47,
+      "endLine": 81,
+      "source": "memory",
+      "snippet": "2. ✅ **Web estimator** — No new matches (3 from Apr 29, already labeled) 3. ✅ **Service schedule** — No new matches (Airiana Apr 29, already labeled) 4. ✅ **Service requests** — No new matches 5. ✅ **Before & After** — No new matches 6. ✅ **GreenSky** — No new matches (Apr 29 transaction already processed) 7. ✅ **Jen Telegram Alert** — No new emails from jen@hamburgdoor.com **New since last check (6:43):** ### Curation Rules Applied 1. ✅ **Staff attendance** — No new matches 2. ✅ **Web estimator** — No new matches 3. ✅ **Service schedule** — No new matches 4. 💼 **Service Requests** — WO#168017 - MAJOR FS (Regine Ligsa via servicerequest list, asking for final cost confirmation, 08:00) →",
+      "recallCount": 4,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2.066392682492733,
+      "maxScore": 0.551578451693058,
+      "firstRecalledAt": "2026-04-30T12:30:39.699Z",
+      "lastRecalledAt": "2026-04-30T13:14:12.951Z",
+      "queryHashes": [
+        "ee77bc2c8096",
+        "c489a61083af",
+        "4736be13b507",
+        "b5f7463af9bd"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "web",
+        "estimator",
+        "new",
+        "matches",
+        "apr",
+        "already",
+        "labeled"
+      ]
+    },
+    "memory:memory/2026-04-30.md:77:112": {
+      "key": "memory:memory/2026-04-30.md:77:112",
+      "path": "memory/2026-04-30.md",
+      "startLine": 77,
+      "endLine": 112,
+      "source": "memory",
+      "snippet": "1. ✅ **Staff attendance** — No new matches 2. ✅ **Web estimator** — No new matches 3. ✅ **Service schedule** — No new matches 4. 💼 **Service Requests** — WO#168017 - MAJOR FS (Mike Doherty reply, 08:10) → labeled `Service Requests`, archived. Continuation of Regine Ligsa thread from 08:00. 5. ✅ **Before & After** — No new matches 6. ✅ **GreenSky** — No new matches ### Jen Telegram Alert ✅ No new unread emails from jen@hamburgdoor.com since last check. ### Cleanup - Arctic Wolf Security Awareness read message (Apr 28) — removed from inbox (was lingering read). **Summary:** Nothing urgent. Standard WO continuity. ## Gmail Sync — 8:28 AM **Inbox status:** 2 new unread emails from Jen Kuhn",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.6202382370829582,
+      "maxScore": 0.5544484481215477,
+      "firstRecalledAt": "2026-04-30T12:44:14.446Z",
+      "lastRecalledAt": "2026-04-30T12:44:14.506Z",
+      "queryHashes": [
+        "c489a61083af",
+        "4736be13b507",
+        "25085dc4116f"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "staff",
+        "attendance",
+        "new",
+        "matches",
+        "web",
+        "estimator",
+        "service"
+      ]
+    },
+    "memory:memory/2026-04-30.md:77:114": {
+      "key": "memory:memory/2026-04-30.md:77:114",
+      "path": "memory/2026-04-30.md",
+      "startLine": 77,
+      "endLine": 114,
+      "source": "memory",
+      "snippet": "1. ✅ **Staff attendance** — No new matches 2. ✅ **Web estimator** — No new matches 3. ✅ **Service schedule** — No new matches 4. 💼 **Service Requests** — WO#168017 - MAJOR FS (Mike Doherty reply, 08:10) → labeled `Service Requests`, archived. Continuation of Regine Ligsa thread from 08:00. 5. ✅ **Before & After** — No new matches 6. ✅ **GreenSky** — No new matches ### Jen Telegram Alert ✅ No new unread emails from jen@hamburgdoor.com since last check. ### Cleanup - Arctic Wolf Security Awareness read message (Apr 28) — removed from inbox (was lingering read). **Summary:** Nothing urgent. Standard WO continuity. ## Gmail Sync — 8:28 AM **Inbox status:** 2 new unread emails from Jen Kuhn",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5650781348347663,
+      "maxScore": 0.5650781348347663,
+      "firstRecalledAt": "2026-04-30T13:14:12.951Z",
+      "lastRecalledAt": "2026-04-30T13:14:12.951Z",
+      "queryHashes": [
+        "b5f7463af9bd"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "hamburgdoor.com",
+        "staff",
+        "attendance",
+        "new",
+        "matches",
+        "web",
+        "estimator",
+        "service"
+      ]
+    },
+    "memory:memory/2026-04-30.md:108:133": {
+      "key": "memory:memory/2026-04-30.md:108:133",
+      "path": "memory/2026-04-30.md",
+      "startLine": 108,
+      "endLine": 133,
+      "source": "memory",
+      "snippet": "8. 📤 **\"Re: TSC BETA for Hamburg Door\"** (19dde594b9364f9d) — labeled `jen-alert`, Telegram sent ✅, archived. - Jen asking clarification questions about TSC Cloud beta timeline, data ownership, pricing, integrations **Summary:** 2 Jen emails processed and alerted via Telegram. Nothing urgent. ## Gmail Sync — 8:43 AM **Inbox status:** Clean — 3 new unread items processed. ### Curation Rules Applied 1. ✅ **Staff attendance** — No new matches 2. ✅ **Web estimator** — No new matches 3. ✅ **Service schedule** — No new matches 4. 💼 **Service Requests** — 2 threads labeled & archived: - **\"Fwd: Garage door issue 267 Pearl\"** (19dde6ab4eb5c8ed, 08:43) — Rich Giambra forwarding customer c",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5637293055653572,
+      "maxScore": 0.5637293055653572,
+      "firstRecalledAt": "2026-04-30T13:14:12.951Z",
+      "lastRecalledAt": "2026-04-30T13:14:12.951Z",
+      "queryHashes": [
+        "b5f7463af9bd"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "jen-alert",
+        "tsc",
+        "beta",
+        "hamburg",
+        "door",
+        "19dde594b9364f9d",
+        "labeled",
+        "jen"
       ]
     }
   }

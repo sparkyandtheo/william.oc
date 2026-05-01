@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-Mon Archive Dashboard</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, system-ui, sans-serif; background: #0f1117; color: #e1e4e8; padding: 20px; }
+        h1 { font-size: 22px; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
+        .subtitle { color: #8b949e; font-size: 14px; margin-bottom: 20px; }
+        .stats { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .stat-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 14px 20px; min-width: 140px; }
+        .stat-card .num { font-size: 28px; font-weight: 700; }
+        .stat-card .label { font-size: 12px; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; }
+        .cycle { background: #161b22; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
+        .cycle-header { padding: 10px 16px; background: #1c2128; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; }
+        .cycle-header:hover { background: #21262d; }
+        .cycle-time { color: #58a6ff; }
+        .cycle-result { font-size: 12px; padding: 2px 8px; border-radius: 10px; }
+        .result-ok { background: #1b3a2a; color: #3fb950; }
+        .result-alert { background: #3a1b1b; color: #f85149; }
+        .cycle-body { padding: 10px 16px; font-size: 13px; line-height: 1.6; display: none; white-space: pre-wrap; font-family: monospace; }
+        .cycle.open .cycle-body { display: block; }
+        .cycle.open .cycle-header { border-bottom: 1px solid #30363d; }
+        .emoji { font-style: normal; }
+        .date-picker { display: flex; gap: 8px; align-items: center; margin-bottom: 20px; }
+        .date-picker input { background: #161b22; border: 1px solid #30363d; color: #e1e4e8; padding: 6px 12px; border-radius: 6px; font-size: 14px; }
+        .date-picker button { background: #238636; color: white; border: none; padding: 6px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+        .date-picker button:hover { background: #2ea043; }
+        .loading { text-align: center; padding: 60px; color: #8b949e; }
+        .error { color: #f85149; padding: 20px; }
+        .badge { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 11px; margin-right: 4px; }
+        .badge-green { background: #1b3a2a; color: #3fb950; }
+        .badge-red { background: #3a1b1b; color: #f85149; }
+        .badge-blue { background: #1b2a3a; color: #58a6ff; }
+    </style>
+</head>
+<body>
+    <h1>📧 G-Mon Archive Dashboard</h1>
+    <p class="subtitle">Silently processed emails — what was archived and why</p>
+
+    <div class="date-picker">
+        <label>Date:</label>
+        <input type="date" id="datePicker">
+        <button onclick="loadDate()">Load</button>
+        <button onclick="loadToday()" style="background:#1f6feb;">Today</button>
+        <span id="statusMsg" style="color:#8b949e;font-size:13px;margin-left:10px;"></span>
+    </div>
+
+    <div class="stats" id="statsRow"></div>
+    <div id="cyclesContainer"><div class="loading">📡 Loading archive data...</div></div>
+
+    <script>
+        const apiBase = `http://${window.location.hostname}:3000/api`;
+
+        async function loadToday() {
+            document.getElementById('datePicker').value = new Date().toISOString().slice(0,10);
+            await loadDate();
+        }
+
+        async function loadDate() {
+            const date = document.getElementById('datePicker').value;
+            if (!date) return;
+            const container = document.getElementById('cyclesContainer');
+            const statsRow = document.getElementById('statsRow');
+            container.innerHTML = '<div class="loading">📡 Loading...</div>';
+            statsRow.innerHTML = '';
+            document.getElementById('statusMsg').textContent = 'Loading...';
+
+            try {
+                const res = await fetch(`${apiBase}/archive-log/${date}`);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+
+                if (!data.cycles || data.cycles.length === 0) {
+                    container.innerHTML = '<div class="loading">📭 No archive cycles found for this date.</div>';
+                    document.getElementById('statusMsg').textContent = 'No data';
+                    return;
+                }
+
+                // Stats
+                let totalCycles = data.cycles.length;
+                let archives = 0, alerts = 0, actions = 0;
+                data.cycles.forEach(c => {
+                    const text = c.lines.join(' ');
+                    if (text.includes('🔴') || text.includes('urgent') || text.includes('Alert')) alerts++;
+                    if (text.includes('Archived') || text.includes('labeled') || text.includes('✅')) archives++;
+                });
+
+                statsRow.innerHTML = `
+                    <div class="stat-card"><div class="num">${totalCycles}</div><div class="label">Cycles Today</div></div>
+                    <div class="stat-card"><div class="num">${archives}</div><div class="label">Items Processed</div></div>
+                    <div class="stat-card"><div class="num" style="color:#f85149">${alerts}</div><div class="label">Alerts Sent</div></div>
+                `;
+
+                // Cycles
+                container.innerHTML = data.cycles.map(c => {
+                    const text = c.lines.join(' ');
+                    const hasAlert = text.includes('Alert') || text.includes('alert') || text.includes('🔴');
+                    const hasAction = text.includes('Processed') || text.includes('✅');
+                    return `<div class="cycle">
+                        <div class="cycle-header" onclick="this.parentElement.classList.toggle('open')">
+                            <span class="cycle-time">${c.time}</span>
+                            <span>
+                                ${hasAlert ? '<span class="badge badge-red">Alert</span>' : ''}
+                                ${hasAction ? '<span class="badge badge-green">OK</span>' : ''}
+                                <span style="color:#8b949e;font-size:12px;margin-left:8px;">▼</span>
+                            </span>
+                        </div>
+                        <div class="cycle-body">${escapeHtml(c.lines.join('\n'))}</div>
+                    </div>`;
+                }).join('');
+
+                document.getElementById('statusMsg').textContent = `${data.cycles.length} cycles · ${archives} items`;
+            } catch (err) {
+                container.innerHTML = `<div class="error">❌ Error: ${err.message}</div>`;
+                document.getElementById('statusMsg').textContent = 'Error';
+            }
+        }
+
+        function escapeHtml(text) {
+            const d = document.createElement('div');
+            d.textContent = text;
+            return d.innerHTML;
+        }
+
+        // Auto-load today on page load
+        loadToday();
+        // Auto-refresh every 5 minutes
+        setInterval(loadToday, 300000);
+    </script>
+    <div style="text-align:center;padding:16px;border-top:1px solid #21262d;margin-top:20px;">
+        
+        <a href="/photos.html" style="color:#58a6ff;text-decoration:none;margin:0 12px;">📸 Photo Viewer</a>
+    </div>
+</body>
+</html>

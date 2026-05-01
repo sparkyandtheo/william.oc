@@ -2,7 +2,7 @@
 
 > **Agent:** Curator (main)
 > **Identity:** 🏛️ Curator
-> **Version:** V1 — 2026-04-29
+> **Version:** V2 — 2026-04-30
 > **Runtime:** DeepSeek V4 Flash (`deepseek/deepseek-v4-flash`)
 > **Gateway:** OpenClaw on Fedora 43 (Linux 6.19.14)
 > **Secure IP:** 100.85.240.73 (Tailscale)
@@ -32,26 +32,37 @@ The Curator does not do everything — it knows who does what and routes accordi
                     │        🏛️ CURATOR      │
                     │    (main agent)        │
                     │  Orchestrator & Hub    │
+                    │  + architecture        │
+                    │  dashboard owner       │
                     └────┬──────────┬────────┘
                          │          │
               ┌──────────┤          ├──────────┐
               ▼          ▼          ▼          ▼
       ┌──────────┐ ┌──────────┐ ┌──────────────┐
-      │  G-Mon   │ │ ts-pic-  │ │ Modularhod   │
-      │  📧      │ │ agent 📸 │ │ _bot 🤖     │
-      │  Gmail   │ │ Picture  │ │ Telegram     │
-      │  Monitor │ │ Pipeline │ │ On-ramp      │
+      │  G-Mon   │ │ ts-pic-  │ │ Fedora-Maint │
+      │  📧      │ │ agent 📸 │ │ Bot 🛠️      │
+      │  Gmail   │ │ Picture  │ │ System Sec   │
+      │  Monitor │ │ Pipeline │ │ + Auto-Upd.  │
       └──────────┘ └──────────┘ └──────────────┘
+                                    │
+                                    ▼
+                           ┌──────────────┐
+                           │ TT Bot       │
+                           │ 🎨           │
+                           │ Social Media │
+                           │ (pending)    │
+                           └──────────────┘
 ```
 
 ### 2.1 Agent Overview
 
-| Agent ID | Name | Creature | Emoji | Role |
-|---|---|---|---|---|
-| `main` | Curator | Workspace Curator | 🏛️ | Central orchestrator, workspace management, chat interface |
-| `gmail-agent` | G-Mon | Digital Gmail Monitor | 📧 | Email triage, labeling, urgency detection |
-| `ts-picture-agent` | ts-picture-agent | Picture Processing Agent | 📸 | Multi-DB photo extraction, SMB delivery, LAN viewer |
-| `Modularhod_bot` | Modularhod_bot | Telegram Bot Agent | — | Telegram messaging bridge |
+| Agent ID | Name | Creature | Emoji | Role | Status |
+|---|---|---|---|---|---|
+| `main` | Curator | Workspace Curator | 🏛️ | Central orchestrator, workspace management, dashboards, chat interface | ✅ Active |
+| `gmail-agent` | G-Mon | Digital Gmail Monitor | 📧 | Email triage, labeling, urgency detection | ✅ Active |
+| `ts-picture-agent` | ts-picture-agent | Picture Processing Agent | 📸 | Multi-DB photo extraction, SMB delivery, LAN viewer | ✅ Active |
+| `fedora-maintenance-bot` | Fedora Bot | System Maintenance | 🛠️ | Auto-updates, security hardening, monitoring | ✅ Operational |
+| `transformation-tuesday-bot` | TT Bot | Social Media | 🎨 | Facebook/Instagram before/after posts | ⏳ Needs API auth + cron |
 
 ---
 
@@ -140,7 +151,52 @@ The Curator does not do everything — it knows who does what and routes accordi
 
 ---
 
-### 3.4 Modularhod_bot — 🤖
+### 3.4 fedora-maintenance-bot — 🛠️
+
+| Attribute | Value |
+|---|---|
+| **Vibe** | Reliable, vigilant, proactive |
+| **Workspace** | `workspace/fedora-maintenance-bot/` |
+| **Skill** | `fedora-auto-update` (daily dnf upgrade, reboot-on-kernel-change, security hardening) |
+| **Cron** | 2 AM daily via systemd timer (not OpenClaw cron) |
+| **Scripts** | `/usr/local/libexec/fedora-auto-update/` (system path for SELinux compat) |
+| **Last run** | 2026-04-30 09:39 (success: upgrade + audit) |
+| **Logs** | `journalctl -u fedora-auto-update.service` |
+
+**Status: ✅ Operational** — All three actions completed:
+1. ✅ `secure-hardening.sh` (firewalld, SELinux, SSH, fail2ban, auditd)
+2. ✅ `schedule-update.sh` (systemd timer installed, later moved scripts to system path)
+3. ✅ SELinux fix — scripts installed to `/usr/local/libexec/fedora-auto-update/`
+
+### 3.5 transformation-tuesday-bot — 🎨
+
+| Attribute | Value |
+|---|---|
+| **Vibe** | Professional, proud, grateful |
+| **Workspace** | `workspace/transformation-tuesday-bot/` |
+| **Mission** | Weekly before/after photos to Facebook & Instagram |
+| **Status** | 🟡 Registered, not yet operational |
+
+**Pending Setup:**
+- ⏳ Facebook/Instagram API app creation & OAuth
+- ⏳ Tuesday morning cron job
+- ⏳ Approval flow (review vs auto-publish)
+
+### 3.6 Architecture Dashboard
+
+The agent architecture dashboard at `/home/william/.openclaw/canvas/agent-architecture/index.html` is maintained by **Curator 🏛️**. Previously assigned to a dedicated `dash-man` agent, this responsibility was consolidated into Curator to reduce agent count. The dashboard covers:
+
+- All 5 registered agents with status indicators
+- Data flow pipelines (email, photos, system)
+- External services & infrastructure
+- Gmail curation rules reference table
+
+**File:** `/home/william/.openclaw/canvas/agent-architecture/index.html`
+**CSS/JS framework:** Static HTML with embedded styles — no build tools, no dependencies.
+
+### 3.7 Telegram Bridge (@Modularhod_bot)
+
+Not a standalone agent — this is a Telegram channel bound to the `main` (Curator) session.
 
 | Attribute | Value |
 |---|---|
@@ -149,12 +205,6 @@ The Curator does not do everything — it knows who does what and routes accordi
 | **Paired User** | 8384679080 |
 | **Mode** | DM + group chat (requireMention) |
 | **Binding** | Session-bound to main agent |
-
-**Capabilities:**
-- Direct messaging with William
-- Group chat participation (when mentioned)
-- Cross-platform continuity (Telegram ↔ WebChat)
-- Full main agent tool access via session binding
 
 ---
 
@@ -233,8 +283,11 @@ Curator 🏛️ (full tool access)
 
 | Job | Agent | Schedule | Session | Delivery | Status |
 |---|---|---|---|---|---|
-| Gmail Sync | gmail-agent | Every 15 min | Isolated | Silent | ✅ OK |
-| Photo Sync | ts-picture-agent | M-F 8-5, Sat 9-12 | Local | — | Active |
+| Gmail Sync | gmail-agent | Every 15 min | Isolated | None | ✅ OK |
+| Daily Git Sync | main | Daily 23:00 EDT | Isolated | None | ✅ OK |
+| TT Bot Tuesday Check | main | Tue 08:00 ET | Isolated | None | ✅ Scheduled |
+| Photo Sync | ts-picture-agent | M-F 8-5, Sat 9-12 | System crontab | — | Active |
+| Fedora Update | fedora-maintenance-bot | Daily 02:00 EDT | Systemd timer | — | Active |
 
 ---
 
@@ -242,15 +295,18 @@ Curator 🏛️ (full tool access)
 
 | File | Location | Purpose |
 |---|---|---|
-| Curator REGISTRATION.md | `workspace/REGISTRATION.md` | This document |
-| G-Mon REGISTRATION.md | `workspace/gmail-agent/REGISTRATION.md` | Gmail agent registration |
-| G-Mon STATUS.md | `workspace/gmail-agent/STATUS.md` | Gmail agent operational status |
-| G-Mon agent_registration.md | `workspace/gmail-agent/agent_registration.md` | Original G-Mon profile |
-| ts-picture-agent report | `workspace/ts-picture-agent/AGENT_REGISTRATION_REPORT.md` | Picture agent registration |
-| ts-picture-agent MEMORY.md | `workspace/ts-picture-agent/MEMORY.md` | Picture agent memory |
+| Curator REGISTRATION.md | `workspace/REGISTRATION.md` | 🏛️ This document (V2 — correct) |
 | Curator MEMORY.md | `workspace/MEMORY.md` | Curator long-term memory |
+| Curator README.md | `workspace/README.md` | Quick reference for all agents |
+| G-Mon REGISTRATION.md | `workspace/gmail-agent/REGISTRATION.md` | 📧 Gmail agent registration (V2.1 — correct) |
+| G-Mon STATUS.md | `workspace/gmail-agent/STATUS.md` | ⚠️ Stale (2026-04-29, pre-skill V1) |
+| G-Mon Skills | `workspace/gmail-agent/skills/*/SKILL.md` | 3 formal curation & sync skills |
+| ts-pic MEMORY.md | `workspace/ts-picture-agent/MEMORY.md` | 📸 Picture agent memory |
+| Fedora REGISTRY.md | `workspace/fedora-maintenance-bot/REGISTRY.md` | 🛠️ ⚠️ Lists phantom test-and-measurement agent |
+| TT Bot MEMORY.md | `workspace/transformation-tuesday-bot/MEMORY.md` | 🎨 Pending training |
+| TT Bot social-config.json | `workspace/transformation-tuesday-bot/social-config.json` | Post template, API config (needs auth) |
+| Dash-Man SOUL.md | `workspace/dash-man/SOUL.md` | 📊 Identity, pending training |
 | Daily Notes | `workspace/memory/YYYY-MM-DD.md` | Daily operational logs |
-| Email Rules | `workspace/memory/email_rules.md` | Full email curation rules |
 
 ---
 
@@ -259,3 +315,5 @@ Curator 🏛️ (full tool access)
 | Date | Version | Changes |
 |---|---|---|
 | 2026-04-29 | V1 | Initial registration. Curator documented with full agent ecosystem, information flow diagrams, and connected infrastructure. |
+| 2026-04-30 09:11 | V2 | Full audit. Removed Modularhod_bot (Telegram bridge) + phantom test-and-measurement. Added dash-man, fedora bot, TT bot. Archived dead scripts. Fixed registry. |
+| 2026-04-30 09:19 | V2.1 | **Streamlined.** Removed dash-man agent (consolidated into Curator). 5 agents total. Cleaned duplicate cron logs from root memory/. Fixed cron delivery artifacts. |

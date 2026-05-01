@@ -27,7 +27,8 @@
 | 2 | `ts-picture-agent` | Picture Agent | `agents/ts-picture-agent` | full |
 | 3 | `gmail-agent` | Gmail Agent | `agents/gmail-agent` | full |
 | 4 | `transformation-tuesday-bot` | Transformation Tuesday Bot | `agents/transformation-tuesday-bot` | full |
-| 5 | `test-and-measurement-instrumentation` | Test & Measurement Instrumentation | `agents/test-and-measurement-instrumentation` | full |
+| 5 | `dash-man` | Dash-Man | `agents/dash-man` | full |
+| 6 | `transformation-tuesday-bot` | Transformation Tuesday Bot | `agents/transformation-tuesday-bot` | full |
 | 6 | `fedora-maintenance-bot` | **Fedora Maintenance Bot** 🛠️ | `agents/fedora-maintenance-bot` | full |
 
 ### 2.2 Defaults

@@ -7,19 +7,35 @@ description: Curate and process incoming emails for Hamburg Overhead Door (HOD).
 
 ## Overview
 
-Automated curation of william@hamburgdoor.com. Each email is identified, labeled, archived (or forwarded), and summarized per the rules below.
+Automated curation of william@hamburgdoor.com. Each email is identified, labeled, read for actionability, then archived or left in inbox accordingly.
+
+### Core Pattern
+
+1. **Identify** — match sender/subject per rule
+2. **Label** — apply label with designated color
+3. **Read & Assess** — read the body and assess: does William need to reply, approve, or take action?
+4. **Decide** —
+   - **Informational only** (just FYI, no response needed) → **Archive** (remove INBOX + CATEGORY_*)
+   - **Needs action** (reply, approval, decision, follow-up) → **Leave in inbox**, mark read
+5. **Mark urgent** — if it's something William would want to know about immediately, send a summary alert
+
+### Urgency Rules
+
+| If... | Then... |
+|---|---|
+| Purely informational (schedules, reports, notifications) | Archive, NO_REPLY |
+| Needs William to reply or approve | Leave in inbox (read), **Telegram alert** |
+| GreenSky deposit, broken WOs, urgent customer issues | Leave in inbox, **Telegram alert** with recommended action |
 
 ## Curation Rules
 
-All rules follow the same core pattern: **identify → label (blue) → archive**. Exceptions noted.
-
-### 1. Daily Staff Attendance
+### 1. Staff Availability & Scheduling
 | | |
 |---|---|
-| **Match** | `billgeary@hamburgdoor.com` OR `jen@hamburgdoor.com` — subject begins with `"Staff"` (e.g., "Staff 4-29-26") |
+| **Match** | `billgeary@hamburgdoor.com` OR `jen@hamburgdoor.com` — subject begins with `"Staff"` (e.g., "Staff 4-29-26") OR subject contains `"Lunch schedule"` OR subject contains `"meetings today"` |
 | **Label** | `attendance` (blue) |
 | **Action** | Archive |
-| **Notes** | Lists who is absent/late for the day. Awareness only. |
+| **Notes** | Staff communications about availability, attendance, scheduling — who's absent/late, lunch schedules, meeting availability for the day. Also applies to replies on same threads (e.g., Jen replying to Bill's lunch schedule). Awareness only. |
 
 ### 2. Web Estimator Logging
 | | |
@@ -32,18 +48,19 @@ All rules follow the same core pattern: **identify → label (blue) → archive*
 ### 3. Service Schedule Updates
 | | |
 |---|---|
-| **Match** | `Airiana@hamburgdoor.com` — subject contains `"Service Schedule"` OR `"PUSH ALL RESI SERVICE"` |
+| **Match** | `Airiana@hamburgdoor.com` — subject contains `"Service Schedule"` OR contains `"PUSH"` (covers both "PUSH ALL RESI SERVICE" and "PLEASE TRY TO START PUSHING COMMERCIAL...") |
 | **Label** | `service-schedule` (blue) |
 | **Action** | Archive |
-| **Notes** | Daily tech capacity / push notices. Awareness only. |
+| **Notes** | Daily tech capacity / push notices from Airiana. Covers both residential and commercial push notifications. Awareness only. |
 
 ### 4. Service Request Logging
 | | |
 |---|---|
-| **Match** | `Servicerequest@hamburgdoor.com` |
+| **Match** | Any sender address at `@hamburgdoor.com` where the local part contains `servicerequest` (case-insensitive), regardless of plural/singular/capitalization — covers `servicerequest@`, `servicerequests@`, `Servicerequest@`, etc. Also catches threads already labeled `Service Requests` even if sender doesn't match. |
 | **Label** | `Service Requests` |
 | **Action** | Archive |
-| **Notes** | Service request notifications. Not action items. |
+| **Notes** | Notifications forwarded from Rich Giambra, automated "Proposal Approved" from `donotreply`, etc. Land in **CATEGORY_FORUMS**, not inbox — check the broad unread sweep, not just inbox query. Already labeled "Service Requests" by Gmail filter, but must be caught by curation to get fully processed (archived, logged).
+| **Archive note** | These messages typically lack the `INBOX` label entirely. To truly archive (hide from Forums tab), **remove both `CATEGORY_FORUMS` and `CATEGORY_UPDATES` labels explicitly** when `--remove-inbox` has no effect. Use `gog gmail messages modify <msgId> --remove <CATEGORY> --account ...` per label. |
 
 ### 5. Before & After Photos
 | | |
@@ -54,7 +71,39 @@ All rules follow the same core pattern: **identify → label (blue) → archive*
 | **Forward** | Send the email contents and photo attachments to the **transformation-tuesday-bot** agent for Transformation Tuesday post processing |
 | **Notes** | These are social media candidates. Do NOT discard the photos — they must reach the TT Bot. |
 
-### 6. GreenSky Curation & Workflow
+### 6. 360 PSG Blog Approvals
+| | |
+|---|---|
+| **Match** | `davidr@manzellamarketing.com` — subject contains `"Blog Approval"` OR `"Next Blog"` |
+| **Label** | `360psg` (red) |
+| **Action** | Archive |
+| **Notes** | Blog approval requests from Manzella Marketing (David Rechin Jr). Previously missed by all rules and caught by jen-telegram-alert fallback. Recurring — ~monthly. |
+
+### 7. Syracuse Wayne Dalton
+| | |
+|---|---|
+| **Match** | Sender domain `@waynedaltonofsyracuse.com` (Thomas Cummings) |
+| **Label** | `Syracuse` (orange) |
+| **Action** | Archive |
+| **Notes** | Wayne Dalton of Syracuse — technical support, billing, IT issues from Thomas Cummings. |
+
+### 8. Buffalo Garage Door Services
+| | |
+|---|---|
+| **Match** | Sender domain `@buffalogds.com` (Mary Girasole, Mark Pinto) |
+| **Label** | `Buffalo GDS` (lime green) |
+| **Action** | Archive |
+| **Notes** | Buffalo GDS — web requests, communications from Mary Girasole or Mark Pinto. |
+
+### 9. Clopay Manufacturer Communications
+| | |
+|---|---|
+| **Match** | Sender domain `@clopay.com` (Clopay Doors, Clopay Corporation, MyDoor admin, etc.) |
+| **Label** | `Clopay` (yellow) |
+| **Action** | Archive |
+| **Notes** | Manufacturer communications — marketing, product updates, price changes, production downtime, account/admin notices. Catch all Clopay sends as a single block. |
+
+### 10. GreenSky Curation & Workflow
 | | |
 |---|---|
 | **Match** | `noreply@greenskycredit.com` OR internal emails mentioning "Greensky" or "GS" |

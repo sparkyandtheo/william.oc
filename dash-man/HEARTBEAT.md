@@ -1,1 +1,1 @@
-# Keep empty to skip heartbeat checks.
+HEARTBEAT.md only

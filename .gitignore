@@ -33,3 +33,12 @@ openclaw.json.bak
 
 # Script output
 scripts/
+
+# Internal OpenClaw state (regenerates constantly)
+**/memory/.dreams/
+
+# Sync logs (regenerates constantly)
+ts-picture-agent/sync.log
+
+# Archived prototypes (purpose-built, not source)
+ts-picture-agent/archive/

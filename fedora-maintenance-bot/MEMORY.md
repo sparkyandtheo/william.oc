@@ -1,25 +1,41 @@
-# MEMORY.md - Long-Term Memory
+# MEMORY.md — Fedora Maintenance Bot 🛠️
 
-_To be filled during training._
+## Identity
+- **Name**: Fedora Maintenance Bot
+- **Creature**: System Maintenance Agent
+- **Vibe**: Reliable, vigilant, proactive
+- **Affiliation**: Hamburg Overhead Door
 
-## Curator Registration Document (REGISTRY.md)
+## Status (2026-04-30) — ✅ Fully Operational
 
-- Created: 2026-04-29
-- Location: workspace/REGISTRY.md
-- Full agent registry, skill inventory, system schedule, security posture, and channel listing
+### What's Running
 
-## Fedora Auto Update Skill (fedora-auto-update)
+| Component | Status | Details |
+|---|---|---|
+| **Auto-update timer** | ✅ Active | 2am EDT daily via systemd timer |
+| **dnf upgrade --refresh** | ✅ Verified | Runs at 02:00, logs to journal |
+| **Security audit post-update** | ✅ Verified | Runs after every update |
+| **Kernel reboot handling** | ✅ Configured | Auto-reboots 60s after kernel/core updates |
+| **Security posture** | ✅ Enforcing | SELinux enforcing, firewalld drop zone, SSH key-only, fail2ban, auditd |
 
-- Installed: 2026-04-29
-- Location: workspace/fedora-auto-update/
-- Schedules daily dnf upgrade at 2am via systemd timer
-- Reboots automatically when kernel/core packages update
-- Security audit checks: firewalld, SELinux, SSH, fail2ban, auditd, listening ports
-- Hardening script applies all recommended configs idempotently
-- Log: /var/log/fedora-auto-update.log
+### Scripts
 
-## Pending Setup
+| Script | Location | Purpose |
+|---|---|---|
+| `fedora-update.sh` | `/usr/local/libexec/fedora-auto-update/` | dnf upgrade --refresh, reboot-if-needed |
+| `security-audit.sh` | `/usr/local/libexec/fedora-auto-update/` | Post-update security posture check |
+| `secure-hardening.sh` | `scripts/secure-hardening.sh` | One-shot hardening (already applied) |
+| `schedule-update.sh` | `scripts/schedule-update.sh` | ⚠️ Installs to home dir — use the manual service unit instead |
 
-- Health check schedules
-- Update monitoring workflow
-- Alert thresholds
+### Systemd Units
+
+| Unit | Type | Path |
+|---|---|---|
+| `fedora-auto-update.service` | oneshot | `/etc/systemd/system/fedora-auto-update.service` |
+| `fedora-auto-update.timer` | timer | `/etc/systemd/system/fedora-auto-update.timer` |
+
+### Notes
+- SELinux blocked the original setup because scripts lived in `/home/william/` with `user_home_t` context
+- Fix: scripts moved to `/usr/local/libexec/fedora-auto-update/` and service unit `ExecStart` updated
+- Service runs as root (default), no `User=` override needed
+- Logs: `journalctl -u fedora-auto-update.service -n 50 --no-pager`

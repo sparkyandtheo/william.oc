@@ -4,16 +4,15 @@
 
 Multi-agent OpenClaw gateway powering HOD operations, communications, and automation.
 
-## Agents
+## Agents (5 registered)
 
-| ID | Name | Role |
-|---|---|---|
-| `main` | Curator 🏛️ | Central orchestrator |
-| `gmail-agent` | G-Mon 📧 | Email triage & communication |
-| `ts-picture-agent` | Picture Agent 📸 | Multi-DB photo pipeline |
-| `fedora-maintenance-bot` | Fedora Bot 🛠️ | System maintenance |
-| `transformation-tuesday-bot` | TT Bot 🎨 | Social media |
-| `test-and-measurement-instrumentation` | T&M 🔬 | Instrumentation |
+| ID | Name | Role | Status |
+|---|---|---|---|
+| `main` | Curator 🏛️ | Central orchestrator + architecture dashboard | ✅ Active |
+| `gmail-agent` | G-Mon 📧 | Email triage & communication | ✅ Active |
+| `ts-picture-agent` | Picture Agent 📸 | Multi-DB photo pipeline | ✅ Active |
+| `fedora-maintenance-bot` | Fedora Bot 🛠️ | System maintenance | ✅ Operational |
+| `transformation-tuesday-bot` | TT Bot 🎨 | Social media | ⏳ Needs API auth + cron |
 
 ## Infrastructure
 
